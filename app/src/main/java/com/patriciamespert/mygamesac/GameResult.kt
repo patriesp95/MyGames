@@ -1,5 +1,9 @@
 package com.patriciamespert.mygamesac
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class GameResult(
     val id: Int,
     val slug: String,
@@ -17,44 +21,51 @@ data class GameResult(
     val metacritic: Int,
     val playtime: Int,
     val suggestions_count:Int,
-    val esbr_rating:EsbrRatingObj,
+    val esrb_rating:EsrbRatingObj?=null,
     val platforms:List<PlatformObj>
 
-)
+): Parcelable
 
+@Parcelize
 data class Rating(
     val id: Int,
     val title: String,
     val count: Int,
     val percent: Double
-)
+) : Parcelable
 
+@Parcelize
 data class StatusObj(
     val owned: Int,
     val beaten: Int,
     val toplay: Int,
     val playing: Int
-)
+) : Parcelable
 
-data class EsbrRatingObj(
+@Parcelize
+data class EsrbRatingObj(
     val id: Int,
     val slug: String,
     val name: String
-)
+) : Parcelable
 
+@Parcelize
 data class PlatformObj(
     val platform:Platform,
-    val released: String,
-    val requirements:RequirementObj
-)
+    val released_at: String?=null,
+    val requirements_en:RequirementObj? = null,
+    val requirements_ru: RequirementObj? = null
+) : Parcelable
 
+@Parcelize
 data class Platform(
     val id: Int,
     val slug: String,
     val name: String
-)
+) : Parcelable
 
+@Parcelize
 data class RequirementObj(
     val minimum: String,
     val recommended: String
-)
+) : Parcelable

@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.databinding.ViewGameItemBinding
 
-class GamesAdapter(private val games:List<GameResult>): RecyclerView.Adapter<GamesAdapter.ViewHolder>(){
+class GamesAdapter(
+    var games:List<GameResult>,
+    private val gameClickedListener: (GameResult) -> Unit
+    ):
+    RecyclerView.Adapter<GamesAdapter.ViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -16,7 +20,9 @@ class GamesAdapter(private val games:List<GameResult>): RecyclerView.Adapter<Gam
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(games[position])
+        val game = games[position]
+        holder.bind(game)
+        holder.itemView.setOnClickListener{ gameClickedListener(game)}
     }
 
     override fun getItemCount(): Int = games.size
@@ -24,7 +30,7 @@ class GamesAdapter(private val games:List<GameResult>): RecyclerView.Adapter<Gam
     class ViewHolder(private val binding: ViewGameItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(game: GameResult){
             binding.title.text = game.name
-            Glide.with(binding.cover.context).load(game.background_image).into(binding.cover)
+            Glide.with(binding.root.context).load(game.background_image).into(binding.cover)
         }
     }
 
