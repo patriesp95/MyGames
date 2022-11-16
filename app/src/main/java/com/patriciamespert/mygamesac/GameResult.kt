@@ -6,7 +6,7 @@ data class GameResult(
     val name: String,
     val released: String,
     val tba: Boolean,
-    val backgroud_image:String,
+    val background_image:String,
     val rating: Double,
     val rating_top: Int,
     val ratings: List<Rating>,
