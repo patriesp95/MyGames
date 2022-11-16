@@ -1,9 +1,10 @@
 package com.patriciamespert.mygamesac
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.databinding.ViewGameItemBinding
 
 class GamesAdapter(private val games:List<GameResult>): RecyclerView.Adapter<GamesAdapter.ViewHolder>(){
@@ -23,6 +24,7 @@ class GamesAdapter(private val games:List<GameResult>): RecyclerView.Adapter<Gam
     class ViewHolder(private val binding: ViewGameItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(game: GameResult){
             binding.title.text = game.name
+            Glide.with(binding.cover.context).load(game.background_image).into(binding.cover)
         }
     }
 
