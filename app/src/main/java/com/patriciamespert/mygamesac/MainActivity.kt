@@ -21,8 +21,8 @@ class MainActivity : AppCompatActivity() {
             val call = RetrofitHelper.service.listPopularVideogames(application.getString(R.string.api_key))
             val result = call.body()
             if(call.isSuccessful){
-                val videogames = result?.games ?: emptyList<GameResult>()
-                Log.d("Videogames", videogames.toString())
+                val games = result?.games ?: emptyList<GameResult>()
+                binding.recycler.adapter = GamesAdapter(games)
             }else{
                 showError()
             }
