@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val gamesAdapter = GamesAdapter(emptyList()){ navigateTo(it)}
+        val gamesAdapter = GamesAdapter(emptyList()){ getDetails(it)}
         binding.recycler.adapter = gamesAdapter
 
         lifecycleScope.launch {
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun navigateTo(game: GameResult) {
+    private fun getDetails(game: GameResult) {
         val gameCall: Call<GameDetailResponse> =
             RetrofitHelper.service.getGameDetails(game.id.toString(),getString(R.string.api_key))
 
@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 if(response.isSuccessful){
                     val game = response.body()
                     game?.let {
+                        navigateTo(game)
                         Log.d("patriiii",game.gameDescription)
                     }
                 }
@@ -66,29 +67,15 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-       /* val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_GAME, game)
-        startActivity(intent)*/
-
-        /*lifecycleScope.launch {
-            val game = RetrofitHelper.service.getGameDetails(id,getString(R.string.api_key))
-            val detailbody = game.body()
-            runOnUiThread{
-                if(detailbody != null)
-                    Log.d("patriiii",detailbody.description)
-
-            }
-
-        }*/
-
-      /*  runOnUiThread{
-            val game = RetrofitHelper.service.getGameDetails(id,getString(R.string.api_key))
-            val detailbody = game.body()
-            if(detailbody != null)
-                Log.d("patriiii",detailbody.description)
-
-        }*/
     }
+
+    private fun navigateTo(game: GameDetailResponse){
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra(DetailActivity.EXTRA_GAME, game)
+        startActivity(intent)
+    }
+
+
 
     private fun showError(){
         Toast.makeText(this,"Ha ocurrido un error", Toast.LENGTH_SHORT)
