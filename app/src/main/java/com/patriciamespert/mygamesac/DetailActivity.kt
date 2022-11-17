@@ -4,6 +4,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
+import android.widget.TextView
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
 import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.databinding.ActivityDetailBinding
 
@@ -28,7 +31,25 @@ class DetailActivity : AppCompatActivity() {
             } else {
                 Html.fromHtml(game.gameDescription)
             }
+            bindDetailInfo(binding.detailGameInfo, game)
 
+        }
+    }
+
+    private fun bindDetailInfo(detailInfo: TextView, game: GameDetailResponse) {
+        detailInfo.text = buildSpannedString {
+
+            bold { append("Original title: ") }
+            appendLine(game.gameNameOriginal)
+
+            bold { append("Release date: ") }
+            appendLine(game.gameReleasedDate)
+
+            bold { append("Rating: ") }
+            appendLine(game.gameRating.toString())
+
+            bold { append("Top Rating: ") }
+            appendLine(game.gameRatingTop.toString())
         }
     }
 }
