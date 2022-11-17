@@ -11,6 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import com.patriciamespert.mygamesac.core.RetrofitHelper
 import com.patriciamespert.mygamesac.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
@@ -42,14 +45,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun navigateTo(game: GameResult) {
-        /*val game = RetrofitHelper.service.getGameDetails(id,getString(R.string.api_key))
-        val detailbody = game.body()
-        if(detailbody != null)
-            Log.d("patriiii",detailbody.description)*/
+        val gameCall: Call<GameDetailResponse> =
+            RetrofitHelper.service.getGameDetails(game.id.toString(),getString(R.string.api_key))
 
-        val intent = Intent(this, DetailActivity::class.java)
+        gameCall.enqueue(object: Callback<GameDetailResponse>{
+            override fun onResponse(
+                call: Call<GameDetailResponse>,
+                response: Response<GameDetailResponse>
+            ) {
+                if(response.isSuccessful){
+                    val game = response.body()
+                    game?.let {
+                        Log.d("patriiii",game.gameDescription)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GameDetailResponse>, t: Throwable) {
+                toast("Failed to retrieved the game with id ${game.id}")
+            }
+
+        })
+       /* val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.EXTRA_GAME, game)
-        startActivity(intent)
+        startActivity(intent)*/
 
         /*lifecycleScope.launch {
             val game = RetrofitHelper.service.getGameDetails(id,getString(R.string.api_key))
