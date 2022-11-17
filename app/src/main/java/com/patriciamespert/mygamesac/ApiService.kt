@@ -13,7 +13,7 @@ interface ApiService {
         @Query("key") key: String,
         @Query("ordering") ordering: String = "-rating",
         @Query("platforms_count") platforms_count: Int = 7,
-        @Query("page") page: Int = 2
+        //@Query("page") page: Int = 2
     ): Response<GameResponse>
 
     @GET("games/{id}")
