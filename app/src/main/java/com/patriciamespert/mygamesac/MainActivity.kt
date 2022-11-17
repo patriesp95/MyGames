@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
                     val game = response.body()
                     game?.let {
                         navigateTo(game)
-                        Log.d("patriiii",game.gameDescription)
                     }
                 }
             }

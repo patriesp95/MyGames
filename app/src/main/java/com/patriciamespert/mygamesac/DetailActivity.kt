@@ -15,11 +15,11 @@ class DetailActivity : AppCompatActivity() {
         val binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val game = intent.getParcelableExtra<GameResult>(EXTRA_GAME)
+        val game = intent.getParcelableExtra<GameDetailResponse>(EXTRA_GAME)
         if (game != null){
             /*title = game.name*/
             Glide.with(this)
-                .load(game.background_image)
+                .load(game.gameBackgroundImage)
                 .into(binding.backdrop)
 
         }
