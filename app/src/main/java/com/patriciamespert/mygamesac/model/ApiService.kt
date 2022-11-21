@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("games")
-    suspend fun listPopularVideogames(
+    suspend fun listPopularGames(
         @Query("key") key: String,
         @Query("ordering") ordering: String = "-rating",
         @Query("platforms_count") platforms_count: Int = 7,

@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.core.RetrofitHelper
 import com.patriciamespert.mygamesac.databinding.ActivityMainBinding
+import com.patriciamespert.mygamesac.model.GamesRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,6 +16,7 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val gamesRepository by lazy { GamesRepository(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val gamesAdapter = GamesAdapter(emptyList()){ getDetails(it)}
+        val gamesAdapter = GamesAdapter(emptyList()){ getGameDetails(it)}
         binding.recycler.adapter = gamesAdapter
 
         lifecycleScope.launch {
-            val apiKey = getString(R.string.api_key)
-            val popularVideogames = RetrofitHelper.service.listPopularVideogames(apiKey)
-            val body = popularVideogames.body()
+            val popularGames = gamesRepository.findPopularGames()
+            val body = popularGames.body()
 
             runOnUiThread{
                 if(body != null)
@@ -41,16 +42,18 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getDetails(game: GameResult) {
-        val gameCall: Call<GameDetailResponse> =
-            RetrofitHelper.service.getGameDetails(game.id.toString(),getString(R.string.api_key))
+    private fun getGameDetails(game: GameResult) {
+        val gameCall: Call<GameDetailResponse> = gamesRepository.findGameDetails(game)
+        performGameInformationRetrieval(gameCall)
+    }
 
-        gameCall.enqueue(object: Callback<GameDetailResponse>{
+    private fun performGameInformationRetrieval(gameCall: Call<GameDetailResponse>) {
+        gameCall.enqueue(object : Callback<GameDetailResponse> {
             override fun onResponse(
                 call: Call<GameDetailResponse>,
                 response: Response<GameDetailResponse>
             ) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val game = response.body()
                     game?.let {
                         navigateTo(game)
@@ -59,7 +62,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<GameDetailResponse>, t: Throwable) {
-                toast("Failed to retrieved the game with id ${game.id}")
+                showError()
             }
 
         })
@@ -74,6 +77,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showError(){
-        Toast.makeText(this,"Ha ocurrido un error", Toast.LENGTH_SHORT)
+        Toast.makeText(this,"An error ocurred", Toast.LENGTH_SHORT)
     }
 }
