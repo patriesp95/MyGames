@@ -1,20 +1,17 @@
-package com.patriciamespert.mygamesac
+package com.patriciamespert.mygamesac.ui
 
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings.Global.getString
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.core.RetrofitHelper
 import com.patriciamespert.mygamesac.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

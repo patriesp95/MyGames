@@ -1,10 +1,10 @@
-package com.patriciamespert.mygamesac
+package com.patriciamespert.mygamesac.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.databinding.ViewGameItemBinding
 
 class GamesAdapter(

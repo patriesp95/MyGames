@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac
+package com.patriciamespert.mygamesac.ui
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import com.bumptech.glide.Glide
+import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
