@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.ui
+package com.patriciamespert.mygamesac.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
