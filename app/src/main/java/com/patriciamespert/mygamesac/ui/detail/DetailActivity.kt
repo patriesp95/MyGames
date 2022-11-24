@@ -8,10 +8,14 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.databinding.ActivityDetailBinding
 import com.patriciamespert.mygamesac.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -27,7 +31,14 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel.state.observe(this) { updateUI(it.game) }
+
+        lifecycleScope.launch{
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.state.collect{
+                    updateUI(it.game)
+                }
+            }
+        }
 
     }
 

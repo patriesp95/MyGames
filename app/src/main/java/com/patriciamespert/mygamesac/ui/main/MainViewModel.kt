@@ -4,6 +4,9 @@ import androidx.lifecycle.*
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.model.GamesRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -11,12 +14,11 @@ import retrofit2.Response
 
 class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
 
-    private val _state = MutableLiveData(UiState())
-    val state: LiveData<UiState> get() {
-        if(_state.value?.games == null){
-            refresh()
-        }
-        return _state
+    private val _state = MutableStateFlow(UiState())
+    val state: StateFlow<UiState> = _state.asStateFlow()
+
+    init {
+        refresh()
     }
 
     private fun refresh() {
@@ -39,13 +41,13 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
                 if (response.isSuccessful) {
                     val game = response.body()
                     game?.let {
-                        _state.value = _state.value?.copy(navigateTo = game )
+                        _state.value = _state.value.copy(navigateTo = game )
                     }
                 }
             }
 
             override fun onFailure(call: Call<GameDetailResponse>, t: Throwable) {
-                _state.value = _state.value?.copy(navigateTo = null)
+                _state.value = _state.value.copy(navigateTo = null)
             }
 
         })

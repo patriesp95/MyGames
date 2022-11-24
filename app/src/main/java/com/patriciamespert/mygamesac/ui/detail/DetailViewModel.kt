@@ -7,14 +7,16 @@ import androidx.lifecycle.*
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.ui.main.MainViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailViewModel(game: GameDetailResponse) : ViewModel() {
 
     class UiState(val game: GameDetailResponse)
 
-    private val _state = MutableLiveData(UiState(game))
-    val state: LiveData<UiState> get() = _state
+    private val _state = MutableStateFlow(UiState(game))
+    val state: StateFlow<UiState> get() = _state
 
 
     fun bindDetailInfo(detailInfo: TextView, game: GameDetailResponse) {
