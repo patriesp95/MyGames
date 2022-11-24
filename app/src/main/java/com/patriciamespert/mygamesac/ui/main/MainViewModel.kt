@@ -47,7 +47,7 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
             }
 
             override fun onFailure(call: Call<GameDetailResponse>, t: Throwable) {
-                _state.value = _state.value.copy(navigateTo = null)
+                print("An error ocurred: ${t.message}")
             }
 
         })
