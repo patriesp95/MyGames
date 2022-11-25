@@ -34,6 +34,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 viewModel.state.collect { binding.updateUI(it)}
             }
         }
+
+        viewLifecycleOwner.launchAndCollect(viewModel.state){binding.updateUI(it)}
+
     }
 
 
@@ -47,6 +50,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private fun navigateTo(game: GameDetailResponse){
         val navAction = MainFragmentDirections.actionMainToDetail(game)
         findNavController().navigate(navAction)
+        viewModel.onNavigationDone()
     }
 
 }

@@ -53,6 +53,10 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
         })
     }
 
+    fun onNavigationDone() {
+        _state.value = _state.value.copy(navigateTo = null)
+    }
+
     data class UiState(
         var loading: Boolean = false,
         var games: List<GameResult>? = null,

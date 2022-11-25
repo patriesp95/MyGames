@@ -6,7 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DiffUtil
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -31,3 +38,15 @@ var View.visible: Boolean
     set(value) {
         visibility = if (value) View.VISIBLE else View.GONE
     }
+
+fun <T> LifecycleOwner.launchAndCollect(
+    flow: Flow<T>,
+    state: Lifecycle.State = Lifecycle.State.STARTED,
+    body: (T) -> Unit
+) {
+    lifecycleScope.launch{
+        repeatOnLifecycle(state) {
+            flow.collect(body)
+        }
+    }
+}

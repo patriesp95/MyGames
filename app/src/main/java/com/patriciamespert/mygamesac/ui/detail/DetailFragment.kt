@@ -41,7 +41,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private fun FragmentDetailBinding.updateUI(state: DetailViewModel.UiState ){
         val game = state.game
-        //requireActivity().title = game.gameName
+        gameDetailToolbar.title = game.gameName
         Glide.with(this@DetailFragment)
             .load(game.gameBackgroundImage)
             .into(backdrop)
