@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(GamesRepository(requireActivity().application)) }
+    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(GamesRepository(requireActivity().app)) }
 
     private val adapter = GamesAdapter { viewModel.onGameClicked(it) }
 

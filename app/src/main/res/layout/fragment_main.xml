@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:indeterminate="true"
-            android:visible="@{loading}"/>
+            app:visible="@{loading}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

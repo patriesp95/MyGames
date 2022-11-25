@@ -18,15 +18,21 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
     val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
-        refresh()
-    }
-
-    private fun refresh() {
         viewModelScope.launch {
+            gamesRepository.popularGames.collect{ games ->
+                _state.value = UiState(games =  games)
+            }
             _state.value = UiState(loading = true)
-            _state.value = UiState(games = gamesRepository.findPopularGames().body()?.games)
+            gamesRepository.requestPopularGames()
         }
     }
+
+    /*private fun onUiReady() {
+        viewModelScope.launch {
+            _state.value = UiState(loading = true)
+            gamesRepository.requestPopularGames()
+        }
+    }*/
 
     fun onGameClicked(game: Game) =
         performGameInformationRetrieval(gamesRepository.findGameDetails(game))
