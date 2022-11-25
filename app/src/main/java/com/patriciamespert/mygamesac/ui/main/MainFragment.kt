@@ -29,12 +29,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             recycler.adapter = adapter
         }
 
-        viewLifecycleOwner.lifecycleScope.launch{
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.state.collect { binding.updateUI(it)}
-            }
-        }
-
         viewLifecycleOwner.launchAndCollect(viewModel.state){binding.updateUI(it)}
 
     }
