@@ -5,6 +5,7 @@ import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.core.RetrofitHelper
+import com.patriciamespert.mygamesac.model.database.Game
 import retrofit2.Call
 
 class GamesRepository(application: Application) {
@@ -17,7 +18,7 @@ class GamesRepository(application: Application) {
                 apiKey
             )
 
-    fun findGameDetails(game: GameResult): Call<GameDetailResponse> {
+    fun findGameDetails(game: Game): Call<GameDetailResponse> {
         val id = game.id.toString()
         return RetrofitHelper.service.getGameDetails(id, apiKey)
     }

@@ -2,8 +2,8 @@ package com.patriciamespert.mygamesac.ui.main
 
 import androidx.lifecycle.*
 import com.patriciamespert.mygamesac.GameDetailResponse
-import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.model.GamesRepository
+import com.patriciamespert.mygamesac.model.database.Game
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -28,7 +28,7 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
         }
     }
 
-    fun onGameClicked(game: GameResult) =
+    fun onGameClicked(game: Game) =
         performGameInformationRetrieval(gamesRepository.findGameDetails(game))
 
 
@@ -59,7 +59,7 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
 
     data class UiState(
         var loading: Boolean = false,
-        var games: List<GameResult>? = null,
+        var games: List<Game>? = null,
         val navigateTo: GameDetailResponse? = null
     )
 }

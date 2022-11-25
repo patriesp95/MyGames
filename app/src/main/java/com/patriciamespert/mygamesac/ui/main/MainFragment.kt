@@ -23,13 +23,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             recycler.adapter = adapter
         }
 
-        with(viewModel.state) {
-            diff({ it.games }) { it?.let(adapter::submitList) }
-            diff({ it.loading }) { binding.progress.visible = it }
-            diff({ it.navigateTo }) { it?.let(::navigateTo) }
+        viewLifecycleOwner.launchAndCollect(viewModel.state){
+            binding.loading = it.loading
+            binding.games = it.games
         }
-
-
     }
 
 
