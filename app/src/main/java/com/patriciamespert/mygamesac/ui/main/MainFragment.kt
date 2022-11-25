@@ -19,7 +19,7 @@ import com.patriciamespert.mygamesac.ui.detail.DetailFragment
 import kotlinx.coroutines.launch
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(GamesRepository(requireActivity() as AppCompatActivity)) }
+    private val viewModel: MainViewModel by viewModels { MainViewModelFactory(GamesRepository(requireActivity().application)) }
 
     private val adapter = GamesAdapter { viewModel.onGameClicked(it) }
 

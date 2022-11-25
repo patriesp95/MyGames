@@ -1,15 +1,15 @@
 package com.patriciamespert.mygamesac.model
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.Application
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.core.RetrofitHelper
 import retrofit2.Call
 
-class GamesRepository(activity: AppCompatActivity) {
+class GamesRepository(application: Application) {
 
-    private val apiKey = activity.getString(R.string.api_key)
+    private val apiKey = application.getString(R.string.api_key)
 
     suspend fun findPopularGames() =
         RetrofitHelper.service
