@@ -50,3 +50,6 @@ fun <T> LifecycleOwner.launchAndCollect(
         }
     }
 }
+
+val Context.app: App
+    get() = applicationContext as App
