@@ -6,7 +6,7 @@ import com.patriciamespert.mygamesac.model.database.GameDatabase
 
 class App: Application() {
 
-    lateinit var db: GameDatabase
+    lateinit var db:GameDatabase
         private set
 
     override fun onCreate() {
