@@ -1,25 +1,16 @@
 package com.patriciamespert.mygamesac.ui.main
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
 import com.patriciamespert.mygamesac.model.GamesRepository
-import com.patriciamespert.mygamesac.ui.detail.DetailFragment
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels { MainViewModelFactory(GamesRepository(requireActivity().application)) }
