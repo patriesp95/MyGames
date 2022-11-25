@@ -32,24 +32,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             recycler.adapter = adapter
         }
 
-        /*viewLifecycleOwner.launchAndCollect(
-            viewModel.state.map { it.loading }.distinctUntilChanged()
-        ){ visible ->
-            binding.progress.visible = visible
-        }
-
-        viewLifecycleOwner.launchAndCollect(
-            viewModel.state.map { it.games }.distinctUntilChanged()
-        ){ games ->
-            adapter.submitList(games)
-        }
-
-        viewLifecycleOwner.launchAndCollect(
-            viewModel.state.map { it.navigateTo }.distinctUntilChanged()
-        ){ game ->
-            game?.let(::navigateTo)
-        }*/
-
         with(viewModel.state) {
             diff({ it.games }) { it?.let(adapter::submitList) }
             diff({ it.loading }) { binding.progress.visible = it }
