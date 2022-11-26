@@ -33,9 +33,8 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
     }
 
     data class UiState(
-        var loading: Boolean = false,
-        var games: List<Game>? = null,
-        val navigateTo: GameDetailResponse? = null
+        val loading: Boolean = false,
+        val games: List<Game>? = null
     )
 }
 
