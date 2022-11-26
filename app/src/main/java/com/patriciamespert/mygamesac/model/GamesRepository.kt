@@ -12,6 +12,7 @@ import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailRemoteDat
 import com.patriciamespert.mygamesac.model.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.model.datasource.main.GameRemoteDataSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 
 class GamesRepository(application: App) {
@@ -26,7 +27,7 @@ class GamesRepository(application: App) {
     val popularGames = localDataSource.games
 
     suspend fun requestDetailedGame(id: Int) = withContext(Dispatchers.IO){
-        remoteGameDetailDataSource.findGameDetails(id){
+        remoteGameDetailDataSource.findGameDetails(id) {
             if (!localGameDetailDataSource.checkGameExists(it.gameId)) {
                 localGameDetailDataSource.save(it.toLocalDetailModel())
             }
@@ -42,6 +43,11 @@ class GamesRepository(application: App) {
                 }
             )}
         }
+    }
+
+    suspend fun switchFavorite(game: GameDetail) {
+        val updatedGame = game.copy(favorite = !game.favorite)
+        localGameDetailDataSource.update(updatedGame)
     }
 }
 
@@ -64,7 +70,8 @@ private fun GameDetailResponse.toLocalDetailModel(): GameDetail = GameDetail(
     gameDescription,
     gameBackgroundImage,
     gameRating,
-    gameRatingTop
+    gameRatingTop,
+    false
 
 )
 

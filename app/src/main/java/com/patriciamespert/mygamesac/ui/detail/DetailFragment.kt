@@ -32,6 +32,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         val binding = FragmentDetailBinding.bind(view)
 
         binding.gameDetailToolbar.setNavigationOnClickListener{findNavController().popBackStack()}
+        binding.gameDetailFavorite.setOnClickListener {viewModel.onFavoriteClicked()}
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
             if (state.game != null) {

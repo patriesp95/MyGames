@@ -16,4 +16,7 @@ interface GameDetailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: GameDetail)
 
+    @Update(entity = GameDetail::class)
+    suspend fun updateGame(games: List<GameDetail>)
+
 }

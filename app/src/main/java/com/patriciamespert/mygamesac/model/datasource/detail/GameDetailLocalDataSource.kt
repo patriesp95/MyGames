@@ -14,4 +14,8 @@ class GameDetailLocalDataSource(private val gameDetailDao: GameDetailDao){
         gameDetailDao.insertGame(game)
     }
 
+    suspend fun update(game: GameDetail) {
+        gameDetailDao.updateGame(listOf(game))
+    }
+
 }

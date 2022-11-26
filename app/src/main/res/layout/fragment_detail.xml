@@ -18,6 +18,7 @@
         tools:context=".ui.detail.DetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.DarkOverlay"
@@ -73,7 +74,7 @@
                     android:text="@{detailedGame.gameDescription}"/>
 
                 <com.patriciamespert.mygamesac.ui.detail.GameDetailInfoView
-                    android:id="@+id/movie_detail_info"
+                    android:id="@+id/game_detail_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
@@ -86,6 +87,16 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/game_detail_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@{detailedGame.favorite ? @drawable/ic_favorite_on : @drawable/ic_favorite_off}"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|end"/>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

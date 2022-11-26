@@ -35,6 +35,12 @@ class DetailViewModel(
         }
     }
 
+    fun onFavoriteClicked() {
+        viewModelScope.launch {
+            _state.value.game?.let {repository.switchFavorite(it)}
+        }
+    }
+
     class UiState(val game: GameDetail? = null)
 }
 
