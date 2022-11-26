@@ -11,16 +11,9 @@ class GameDetailRemoteDataSource(
     private val apiKey: String
 ) {
 
-    fun findGameDetails(id: Int):Call<GameDetailResponse>{
-        return RetrofitHelper.service.getGameDetails(id.toString(), apiKey)
-    }
-
-    private fun getGameDetails(game: GameDetailResponse):GameDetailResponse {
-        return game
-    }
-
-    private fun performGameInformationRetrieval(gameCall: Call<GameDetailResponse>, onComplete: (GameDetailResponse) -> Unit){
-        gameCall.enqueue(object : Callback<GameDetailResponse> {
+    fun findGameDetails(id: Int, onComplete: (GameDetailResponse) -> Unit){
+        val call: Call<GameDetailResponse> = RetrofitHelper.service.getGameDetails(id.toString(), apiKey)
+        call.enqueue(object : Callback<GameDetailResponse> {
             override fun onResponse(
                 call: Call<GameDetailResponse>,
                 response: Response<GameDetailResponse>

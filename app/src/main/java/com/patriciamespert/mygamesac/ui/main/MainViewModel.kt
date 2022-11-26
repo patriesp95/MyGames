@@ -22,40 +22,14 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
             gamesRepository.popularGames.collect{ games ->
                 _state.value = UiState(games =  games)
             }
+        }
+    }
+
+    fun onUiReady() {
+        viewModelScope.launch {
             _state.value = UiState(loading = true)
             gamesRepository.requestPopularGames()
         }
-    }
-
-    fun onGameClicked(game: Game) =
-        performGameInformationRetrieval(gamesRepository.findGameDetails(game.id)){
-            _state.value = _state.value.copy(navigateTo = it )
-        }
-
-
-    private fun performGameInformationRetrieval(gameCall: Call<GameDetailResponse>,onComplete: (GameDetailResponse) -> Unit) {
-        gameCall.enqueue(object : Callback<GameDetailResponse> {
-            override fun onResponse(
-                call: Call<GameDetailResponse>,
-                response: Response<GameDetailResponse>
-            ) {
-                if (response.isSuccessful) {
-                    val game = response.body()
-                    game?.let {
-                        onComplete.invoke(game)
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<GameDetailResponse>, t: Throwable) {
-                print("An error ocurred: ${t.message}")
-            }
-
-        })
-    }
-
-    fun onNavigationDone() {
-        _state.value = _state.value.copy(navigateTo = null)
     }
 
     data class UiState(

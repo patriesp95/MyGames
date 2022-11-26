@@ -24,7 +24,7 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="game"
-            app:argType="com.patriciamespert.mygamesac.GameDetailResponse" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

@@ -13,7 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.R
+import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
+import com.patriciamespert.mygamesac.model.GamesRepository
 import kotlinx.coroutines.launch
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -21,7 +23,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val safeArgs: DetailFragmentArgs by navArgs()
 
     private val viewModel: DetailViewModel by viewModels {
-        DetailViewModelFactory(requireNotNull(safeArgs.game))
+        DetailViewModelFactory(safeArgs.id, GamesRepository(requireActivity().app))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,14 +43,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private fun FragmentDetailBinding.updateUI(state: DetailViewModel.UiState ){
         val game = state.game
-        gameDetailToolbar.title = game.gameName
+        gameDetailToolbar.title = game?.gameName
         Glide.with(this@DetailFragment)
-            .load(game.gameBackgroundImage)
+            .load(game?.gameBackgroundImage)
             .into(backdrop)
         description.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(game.gameDescription, Html.FROM_HTML_MODE_COMPACT)
+            Html.fromHtml(game?.gameDescription, Html.FROM_HTML_MODE_COMPACT)
         } else {
-            Html.fromHtml(game.gameDescription)
+            Html.fromHtml(game?.gameDescription)
         }
         viewModel.bindDetailInfo(detailGameInfo, game)
     }

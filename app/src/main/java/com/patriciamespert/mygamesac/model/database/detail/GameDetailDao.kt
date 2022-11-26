@@ -10,6 +10,9 @@ interface GameDetailDao {
     @Query("SELECT * FROM GameDetail WHERE gameId = :id")
     fun findById(id: Int): Flow<GameDetail>
 
+    @Query("SELECT count(gameId) from GameDetail WHERE gameId = :id")
+    fun checkGame(id:Int): Boolean
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGame(game: GameDetail)
 

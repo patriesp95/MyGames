@@ -18,8 +18,8 @@ interface GameDao {
     @Query("SELECT count(id) from Game")
     fun gameCount(): Int
 
-    @Query("SELECT * FROM Game WHERE id = :id")
-    fun findById(id: Int): Flow<Game>
+    /*@Query("SELECT * FROM Game WHERE id = :id")
+    fun findById(id: Int): Flow<Game>*/
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGames(games: List<Game>)
