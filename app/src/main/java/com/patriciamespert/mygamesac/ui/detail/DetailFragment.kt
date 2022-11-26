@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
+import com.patriciamespert.mygamesac.launchAndCollect
 import com.patriciamespert.mygamesac.model.GamesRepository
 import kotlinx.coroutines.launch
 
@@ -32,26 +33,12 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         binding.gameDetailToolbar.setNavigationOnClickListener{findNavController().popBackStack()}
 
-        viewLifecycleOwner.lifecycleScope.launch{
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.state.collect{
-                    binding.updateUI(it)
-                }
+        viewLifecycleOwner.launchAndCollect(viewModel.state) { state ->
+            if (state.game != null) {
+                binding.detailedGame = state.game
             }
         }
-    }
 
-    private fun FragmentDetailBinding.updateUI(state: DetailViewModel.UiState ){
-        val game = state.game
-        gameDetailToolbar.title = game?.gameName
-        Glide.with(this@DetailFragment)
-            .load(game?.gameBackgroundImage)
-            .into(backdrop)
-        description.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(game?.gameDescription, Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            Html.fromHtml(game?.gameDescription)
-        }
-        viewModel.bindDetailInfo(detailGameInfo, game)
+        viewModel.onUiReady()
     }
 }

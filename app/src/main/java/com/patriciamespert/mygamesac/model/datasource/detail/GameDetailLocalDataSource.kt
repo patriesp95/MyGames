@@ -6,9 +6,9 @@ import com.patriciamespert.mygamesac.model.database.main.Game
 import kotlinx.coroutines.flow.Flow
 
 class GameDetailLocalDataSource(private val gameDetailDao: GameDetailDao){
-    fun findByid(id:Int):Flow<GameDetail> = gameDetailDao.findById(id)
+    fun findById(id:Int):Flow<GameDetail> = gameDetailDao.findById(id)
 
-    fun isEmpty(id: Int): Boolean = gameDetailDao.checkGame(id)
+    fun checkGameExists(id: Int): Boolean = gameDetailDao.checkGame(id)
 
     fun save(game: GameDetail){
         gameDetailDao.insertGame(game)

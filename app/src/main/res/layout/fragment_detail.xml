@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.patriciamespert.mygamesac.model.database.detail.GameDetail"/>
 
+        <variable
+            name="detailedGame"
+            type="GameDetail" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -28,6 +32,7 @@
 
                 <ImageView
                     android:id="@+id/backdrop"
+                    app:url="@{detailedGame.gameBackgroundImage}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
@@ -63,7 +68,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    tools:text="@tools:sample/lorem/random" />
+                    tools:text="@tools:sample/lorem/random"
+                    android:text="@{detailedGame.gameDescription}"/>
 
                 <TextView
                     android:id="@+id/detailGameInfo"

@@ -1,6 +1,7 @@
 package com.patriciamespert.mygamesac.model
 
 import com.patriciamespert.mygamesac.GameDetailResponse
+import com.patriciamespert.mygamesac.model.database.detail.GameDetail
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
@@ -18,8 +19,8 @@ interface ApiService {
     ): Response<GameResponse>
 
     @GET("games/{id}")
-    fun getGameDetails(
+    suspend fun getGameDetails(
         @Path("id") id: String,
         @Query("key") key: String
-        ): Call<GameDetailResponse>
+        ): Response<GameDetailResponse>
 }

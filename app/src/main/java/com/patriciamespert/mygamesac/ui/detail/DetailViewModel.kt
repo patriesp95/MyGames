@@ -14,29 +14,28 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    gameId: Int,
+    private val gameId: Int,
     private val repository: GamesRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> get() = _state
 
-    class UiState(val game: GameDetail? = null)
-
-
-    fun bindDetailInfo(detailInfo: TextView, game: GameDetail?) {
-        detailInfo.text = buildSpannedString {
-
-            bold { append("Original title: ") }
-            appendLine(game?.gameNameOriginal)
-
-            bold { append("Rating: ") }
-            appendLine(game?.gameRating.toString())
-
-            bold { append("Top Rating: ") }
-            appendLine(game?.gameRatingTop.toString())
+    init {
+        viewModelScope.launch {
+            repository.requestDetailedGame(gameId)
         }
     }
+
+    fun onUiReady() {
+        viewModelScope.launch {
+            repository.findById(gameId).collect {
+                _state.value = UiState(it)
+            }
+        }
+    }
+
+    class UiState(val game: GameDetail? = null)
 }
 
 @Suppress("UNCHECKED_CAST")
