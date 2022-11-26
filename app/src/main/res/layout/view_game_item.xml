@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.patriciamespert.mygamesac.model.database.Game"/>
+        <import type="com.patriciamespert.mygamesac.model.database.main.Game"/>
 
         <variable
             name="game"
-            type="Game"/>
+            type="com.patriciamespert.mygamesac.model.database.main.Game"/>
     </data>
 
     <LinearLayout

@@ -3,7 +3,7 @@ package com.patriciamespert.mygamesac.ui.main
 import androidx.lifecycle.*
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.model.GamesRepository
-import com.patriciamespert.mygamesac.model.database.Game
+import com.patriciamespert.mygamesac.model.database.main.Game
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -27,18 +27,13 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
         }
     }
 
-    /*private fun onUiReady() {
-        viewModelScope.launch {
-            _state.value = UiState(loading = true)
-            gamesRepository.requestPopularGames()
-        }
-    }*/
-
     fun onGameClicked(game: Game) =
-        performGameInformationRetrieval(gamesRepository.findGameDetails(game))
+        performGameInformationRetrieval(gamesRepository.findGameDetails(game.id)){
+            _state.value = _state.value.copy(navigateTo = it )
+        }
 
 
-    private fun performGameInformationRetrieval(gameCall: Call<GameDetailResponse>) {
+    private fun performGameInformationRetrieval(gameCall: Call<GameDetailResponse>,onComplete: (GameDetailResponse) -> Unit) {
         gameCall.enqueue(object : Callback<GameDetailResponse> {
             override fun onResponse(
                 call: Call<GameDetailResponse>,
@@ -47,7 +42,7 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
                 if (response.isSuccessful) {
                     val game = response.body()
                     game?.let {
-                        _state.value = _state.value.copy(navigateTo = game )
+                        onComplete.invoke(game)
                     }
                 }
             }

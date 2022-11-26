@@ -5,14 +5,14 @@
 
     <data>
         <import type="java.util.List"/>
-        <import type="com.patriciamespert.mygamesac.model.database.Game"/>
+        <import type="com.patriciamespert.mygamesac.model.database.main.Game"/>
 
         <variable
             name="loading"
             type="boolean" />
         <variable
             name="games"
-            type="List&lt;Game>" />
+            type="List&lt;Game&gt;" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

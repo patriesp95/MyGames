@@ -1,9 +1,11 @@
-package com.patriciamespert.mygamesac.model.database
+package com.patriciamespert.mygamesac.model.database.main
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 @Entity
 data class Game (
     @PrimaryKey(autoGenerate = true) val id: Int,
@@ -13,4 +15,4 @@ data class Game (
     val rating: Double,
     val ratingTop: Int,
     val added: Int
-    )
+    ) : Parcelable

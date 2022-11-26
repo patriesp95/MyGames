@@ -1,13 +1,16 @@
 package com.patriciamespert.mygamesac.model
 
-import android.app.Application
 import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.core.RetrofitHelper
-import com.patriciamespert.mygamesac.model.database.Game
-import com.patriciamespert.mygamesac.model.database.GameDao
+import com.patriciamespert.mygamesac.model.database.main.Game
+import com.patriciamespert.mygamesac.model.database.main.GameDao
+import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailLocalDataSource
+import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.model.datasource.main.GameLocalDataSource
+import com.patriciamespert.mygamesac.model.datasource.main.GameRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
@@ -18,24 +21,25 @@ class GamesRepository(application: App) {
     private val apiKey = application.getString(R.string.api_key)
     private val localDataSource = GameLocalDataSource(application.db.gameDao())
     private val remoteDataSource = GameRemoteDataSource(application.getString(R.string.api_key))
+    private val localGameDetailDataSource = GameDetailLocalDataSource(application.db.gameDetailDao())
+    private val remoteGameDetailDataSource = GameDetailRemoteDataSource(application.getString(R.string.api_key))
+
+    fun findGameDetails(id: Int) = remoteGameDetailDataSource.findGameDetails(id)
 
     val popularGames = localDataSource.games
 
     suspend fun requestPopularGames() = withContext(Dispatchers.IO){
         if(localDataSource.isEmpty()){
-            val retrievedGames = remoteDataSource.findPopularGames()
-            retrievedGames.body()?.games?.map {it.toLocalModel()}?.let { localDataSource.save(it)}
+            val retrievedGames = remoteDataSource.findPopularGames().body()?.games
+            retrievedGames?.let {localDataSource.save(it.toLocalModel())}
         }
-    }
-
-
-    fun findGameDetails(game: Game): Call<GameDetailResponse> {
-        val id = game.id.toString()
-        return RetrofitHelper.service.getGameDetails(id, apiKey)
     }
 }
 
-private fun GameResult.toLocalModel():Game = Game(
+private fun List<GameResult>.toLocalModel(): List<Game> = map { it.toLocalModel() }
+
+
+private fun GameResult.toLocalModel(): Game = Game(
     id,
     name,
     released,
@@ -44,22 +48,3 @@ private fun GameResult.toLocalModel():Game = Game(
     rating_top,
     added
     )
-class GameLocalDataSource(private val gameDao: GameDao){
-    val games: Flow<List<Game>> = gameDao.getAll()
-
-    fun isEmpty(): Boolean = gameDao.gameCount() == 0
-
-    fun save(games: List<Game>){
-        gameDao.insertGames(games)
-    }
-}
-
-class GameRemoteDataSource(
-    private val apiKey: String
-) {
-    suspend fun findPopularGames() =
-        RetrofitHelper.service
-            .listPopularGames(
-                apiKey
-            )
-}
