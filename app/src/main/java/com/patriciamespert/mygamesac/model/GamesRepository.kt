@@ -27,7 +27,7 @@ class GamesRepository(application: App) {
 
     suspend fun requestDetailedGame(id: Int) = withContext(Dispatchers.IO){
         remoteGameDetailDataSource.findGameDetails(id){
-            if (localGameDetailDataSource.checkGameExists(it.gameId)) {
+            if (!localGameDetailDataSource.checkGameExists(it.gameId)) {
                 localGameDetailDataSource.save(it.toLocalDetailModel())
             }
         }

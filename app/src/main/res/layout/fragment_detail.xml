@@ -45,7 +45,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:navigationIcon="@drawable/ic_arrow_back"
-                    tools:title="Movie name" />
+                    tools:title="Movie name"
+                    app:title="@{detailedGame.gameName}" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -71,11 +72,16 @@
                     tools:text="@tools:sample/lorem/random"
                     android:text="@{detailedGame.gameDescription}"/>
 
-                <TextView
-                    android:id="@+id/detailGameInfo"
+                <com.patriciamespert.mygamesac.ui.detail.GameDetailInfoView
+                    android:id="@+id/movie_detail_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:padding="16dp"
+                    android:lineSpacingMultiplier="1.5"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:background="?attr/colorSurface"
+                    app:game="@{detailedGame}"
+                    tools:text="Lorem ipsum" />
 
             </LinearLayout>
 
