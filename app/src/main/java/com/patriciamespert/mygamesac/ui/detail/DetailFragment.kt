@@ -39,7 +39,5 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 binding.detailedGame = state.game
             }
         }
-
-        viewModel.onUiReady()
     }
 }

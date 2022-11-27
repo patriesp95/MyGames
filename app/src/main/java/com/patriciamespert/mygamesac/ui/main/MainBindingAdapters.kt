@@ -1,5 +1,6 @@
 package com.patriciamespert.mygamesac.ui.main
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.patriciamespert.mygamesac.model.database.main.Game

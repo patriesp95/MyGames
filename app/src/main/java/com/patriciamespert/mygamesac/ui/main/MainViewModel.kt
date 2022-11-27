@@ -23,12 +23,15 @@ class MainViewModel(private val gamesRepository: GamesRepository): ViewModel() {
                 _state.value = UiState(games =  games)
             }
         }
+
+        onUiReady()
     }
 
-    fun onUiReady() {
+    private fun onUiReady() {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
             gamesRepository.requestPopularGames()
+            _state.value = UiState(loading = false)
         }
     }
 

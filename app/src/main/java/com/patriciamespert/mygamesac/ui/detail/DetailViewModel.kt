@@ -25,9 +25,10 @@ class DetailViewModel(
         viewModelScope.launch {
             repository.requestDetailedGame(gameId)
         }
+        onUiReady()
     }
 
-    fun onUiReady() {
+    private fun onUiReady() {
         viewModelScope.launch {
             repository.findById(gameId).collect {
                 _state.value = UiState(it)

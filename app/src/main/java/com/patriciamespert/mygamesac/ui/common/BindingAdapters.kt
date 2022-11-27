@@ -14,3 +14,8 @@ fun View.setVisible(visible: Boolean?){
 fun ImageView.bindUrl(url: String?) {
     if (url != null)  Glide.with(context).load(url).into(this)
 }
+
+@BindingAdapter("heart")
+fun View.setHeart(visible: Boolean?){
+    visibility = if(visible == true) View.VISIBLE else View.GONE
+}
