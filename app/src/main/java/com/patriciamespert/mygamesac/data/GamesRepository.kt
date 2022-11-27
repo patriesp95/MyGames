@@ -1,15 +1,15 @@
-package com.patriciamespert.mygamesac.model
+package com.patriciamespert.mygamesac.data
 
 import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
-import com.patriciamespert.mygamesac.model.database.detail.GameDetail
-import com.patriciamespert.mygamesac.model.database.main.Game
-import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailLocalDataSource
-import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.mygamesac.model.datasource.main.GameLocalDataSource
-import com.patriciamespert.mygamesac.model.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.data.database.detail.GameDetail
+import com.patriciamespert.mygamesac.data.database.main.Game
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

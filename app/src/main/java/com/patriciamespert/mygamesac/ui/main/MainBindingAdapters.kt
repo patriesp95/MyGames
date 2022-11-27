@@ -1,9 +1,8 @@
 package com.patriciamespert.mygamesac.ui.main
 
-import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.patriciamespert.mygamesac.model.database.main.Game
+import com.patriciamespert.mygamesac.data.database.main.Game
 
 @BindingAdapter("items")
 fun RecyclerView.setItems(games: List<Game>?) {

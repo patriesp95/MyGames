@@ -1,11 +1,7 @@
-package com.patriciamespert.mygamesac.model.datasource.detail
+package com.patriciamespert.mygamesac.data.datasource.detail
 
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.core.RetrofitHelper
-import com.patriciamespert.mygamesac.model.database.detail.GameDetail
-import com.patriciamespert.mygamesac.model.database.main.Game
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 
 class GameDetailRemoteDataSource(

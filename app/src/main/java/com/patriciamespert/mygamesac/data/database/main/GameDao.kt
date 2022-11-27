@@ -1,12 +1,10 @@
-package com.patriciamespert.mygamesac.model.database.main
+package com.patriciamespert.mygamesac.data.database.main
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.patriciamespert.mygamesac.model.database.detail.GameDetail
-import com.patriciamespert.mygamesac.model.database.main.Game
 import kotlinx.coroutines.flow.Flow
 
 @Dao

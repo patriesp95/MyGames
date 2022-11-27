@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.patriciamespert.mygamesac.model.database.main.Game"/>
+        <import type="com.patriciamespert.mygamesac.data.database.main.Game"/>
 
         <variable
             name="game"

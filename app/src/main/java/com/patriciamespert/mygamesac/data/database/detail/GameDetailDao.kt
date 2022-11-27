@@ -1,7 +1,6 @@
-package com.patriciamespert.mygamesac.model.database.detail
+package com.patriciamespert.mygamesac.data.database.detail
 
 import androidx.room.*
-import com.patriciamespert.mygamesac.model.database.main.Game
 import kotlinx.coroutines.flow.Flow
 
 @Dao

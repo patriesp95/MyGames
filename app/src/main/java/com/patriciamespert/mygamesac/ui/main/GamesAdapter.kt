@@ -8,7 +8,7 @@ import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.basicDiffUtil
 import com.patriciamespert.mygamesac.databinding.ViewGameItemBinding
 import com.patriciamespert.mygamesac.inflate
-import com.patriciamespert.mygamesac.model.database.main.Game
+import com.patriciamespert.mygamesac.data.database.main.Game
 
 class GamesAdapter(private val gameClickedListener: (Game) -> Unit):
     ListAdapter<Game, GamesAdapter.ViewHolder>(basicDiffUtil { old, new -> old.id == new.id }) {

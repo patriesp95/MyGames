@@ -2,7 +2,7 @@ package com.patriciamespert.mygamesac
 
 import android.app.Application
 import androidx.room.Room
-import com.patriciamespert.mygamesac.model.database.GameDatabase
+import com.patriciamespert.mygamesac.data.database.GameDatabase
 
 class App: Application() {
 

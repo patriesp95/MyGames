@@ -5,7 +5,7 @@
 
     <data>
         <import type="java.util.List"/>
-        <import type="com.patriciamespert.mygamesac.model.database.main.Game"/>
+        <import type="com.patriciamespert.mygamesac.data.database.main.Game"/>
 
         <variable
             name="loading"

@@ -1,7 +1,7 @@
-package com.patriciamespert.mygamesac.model.datasource.main
+package com.patriciamespert.mygamesac.data.datasource.main
 
-import com.patriciamespert.mygamesac.model.database.main.Game
-import com.patriciamespert.mygamesac.model.database.main.GameDao
+import com.patriciamespert.mygamesac.data.database.main.Game
+import com.patriciamespert.mygamesac.data.database.main.GameDao
 import kotlinx.coroutines.flow.Flow
 
 class GameLocalDataSource(private val gameDao: GameDao){

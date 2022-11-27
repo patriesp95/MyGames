@@ -1,14 +1,8 @@
 package com.patriciamespert.mygamesac.ui.detail
 
-import android.widget.TextView
-import androidx.core.text.bold
-import androidx.core.text.buildSpannedString
 import androidx.lifecycle.*
-import com.patriciamespert.mygamesac.GameDetailResponse
-import com.patriciamespert.mygamesac.GameResult
-import com.patriciamespert.mygamesac.model.GamesRepository
-import com.patriciamespert.mygamesac.model.database.detail.GameDetail
-import com.patriciamespert.mygamesac.ui.main.MainViewModel
+import com.patriciamespert.mygamesac.data.GamesRepository
+import com.patriciamespert.mygamesac.data.database.detail.GameDetail
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

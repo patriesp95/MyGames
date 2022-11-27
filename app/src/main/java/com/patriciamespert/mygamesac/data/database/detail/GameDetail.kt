@@ -1,9 +1,7 @@
-package com.patriciamespert.mygamesac.model.database.detail
+package com.patriciamespert.mygamesac.data.database.detail
 
-import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 @Entity
 data class GameDetail (
