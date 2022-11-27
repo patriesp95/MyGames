@@ -1,6 +1,5 @@
 package com.patriciamespert.mygamesac.model
 
-import android.util.Log
 import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
@@ -12,7 +11,6 @@ import com.patriciamespert.mygamesac.model.datasource.detail.GameDetailRemoteDat
 import com.patriciamespert.mygamesac.model.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.model.datasource.main.GameRemoteDataSource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 
 class GamesRepository(application: App) {
@@ -48,6 +46,7 @@ class GamesRepository(application: App) {
     suspend fun switchFavorite(game: GameDetail) {
         val updatedGame = game.copy(favorite = !game.favorite)
         localGameDetailDataSource.update(updatedGame)
+        localDataSource.updateFavorite(updatedGame.gameId,updatedGame.favorite)
     }
 }
 
@@ -60,7 +59,8 @@ private fun GameResult.toLocalModel():Game = Game(
     background_image,
     rating,
     rating_top,
-    added
+    added,
+    false
     )
 
 private fun GameDetailResponse.toLocalDetailModel(): GameDetail = GameDetail(

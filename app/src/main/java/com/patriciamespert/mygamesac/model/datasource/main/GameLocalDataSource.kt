@@ -12,4 +12,8 @@ class GameLocalDataSource(private val gameDao: GameDao){
     fun save(games: List<Game>){
         gameDao.insertGames(games)
     }
+
+    suspend fun updateFavorite(id: Int, favorite: Boolean) {
+        gameDao.updateFavorite(id, favorite)
+    }
 }
