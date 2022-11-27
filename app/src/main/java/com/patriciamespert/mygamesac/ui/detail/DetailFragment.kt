@@ -11,13 +11,20 @@ import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
 import com.patriciamespert.mygamesac.data.GamesRepository
+import com.patriciamespert.mygamesac.domain.*
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private val safeArgs: DetailFragmentArgs by navArgs()
 
     private val viewModel: DetailViewModel by viewModels {
-        DetailViewModelFactory(safeArgs.id, GamesRepository(requireActivity().app))
+        val repository = GamesRepository(requireActivity().app)
+        DetailViewModelFactory(
+            safeArgs.id,
+            RequestGameUseCase(repository),
+            FindGameUseCase(repository),
+            SwitchGameFavoriteUseCase(repository)
+            )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

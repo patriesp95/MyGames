@@ -3,13 +3,19 @@ package com.patriciamespert.mygamesac.ui.detail
 import androidx.lifecycle.*
 import com.patriciamespert.mygamesac.data.GamesRepository
 import com.patriciamespert.mygamesac.data.database.detail.GameDetail
+import com.patriciamespert.mygamesac.domain.FindGameUseCase
+import com.patriciamespert.mygamesac.domain.RequestGameUseCase
+import com.patriciamespert.mygamesac.domain.SwitchGameFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val gameId: Int,
-    private val repository: GamesRepository
+    private val requestGameUseCase: RequestGameUseCase,
+    private val findGameUseCase: FindGameUseCase,
+    private val switchGameFavoriteUseCase: SwitchGameFavoriteUseCase
+
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
@@ -17,22 +23,21 @@ class DetailViewModel(
 
     init {
         viewModelScope.launch {
-            repository.requestDetailedGame(gameId)
+            requestGameUseCase(gameId)
         }
         onUiReady()
     }
 
     private fun onUiReady() {
         viewModelScope.launch {
-            repository.findById(gameId).collect {
-                _state.value = UiState(it)
-            }
+            findGameUseCase(gameId)
+                .collect { _state.value = UiState(it)}
         }
     }
 
     fun onFavoriteClicked() {
         viewModelScope.launch {
-            _state.value.game?.let {repository.switchFavorite(it)}
+            _state.value.game?.let {switchGameFavoriteUseCase(it)}
         }
     }
 
@@ -40,9 +45,14 @@ class DetailViewModel(
 }
 
 @Suppress("UNCHECKED_CAST")
-class DetailViewModelFactory(private val gameId: Int, private val repository: GamesRepository) :
+class DetailViewModelFactory(
+    private val gameId: Int,
+    private val requestGameUseCase: RequestGameUseCase,
+    private val findGameUseCase: FindGameUseCase,
+    private val switchGameFavoriteUseCase: SwitchGameFavoriteUseCase
+    ) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return DetailViewModel(gameId,repository) as T
+        return DetailViewModel(gameId,requestGameUseCase,findGameUseCase,switchGameFavoriteUseCase) as T
     }
 }
