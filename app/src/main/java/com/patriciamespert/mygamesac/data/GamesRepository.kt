@@ -4,8 +4,8 @@ import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
-import com.patriciamespert.mygamesac.data.database.detail.GameDetail
-import com.patriciamespert.mygamesac.data.database.main.Game
+import com.patriciamespert.mygamesac.domain.GameDetail
+import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
 import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
@@ -51,7 +51,7 @@ class GamesRepository(application: App) {
 }
 
 
-private fun GameResult.toLocalModel():Game = Game(
+private fun GameResult.toLocalModel(): Game = Game(
 
     id,
     name,

@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.core
+package com.patriciamespert.mygamesac.data.core
 
 import com.patriciamespert.mygamesac.data.ApiService
 import okhttp3.OkHttpClient

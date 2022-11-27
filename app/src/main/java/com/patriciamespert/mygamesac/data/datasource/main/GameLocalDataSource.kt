@@ -1,6 +1,6 @@
 package com.patriciamespert.mygamesac.data.datasource.main
 
-import com.patriciamespert.mygamesac.data.database.main.Game
+import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.data.database.main.GameDao
 import kotlinx.coroutines.flow.Flow
 

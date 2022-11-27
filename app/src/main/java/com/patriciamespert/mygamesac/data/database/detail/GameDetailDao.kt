@@ -1,6 +1,7 @@
 package com.patriciamespert.mygamesac.data.database.detail
 
 import androidx.room.*
+import com.patriciamespert.mygamesac.domain.GameDetail
 import kotlinx.coroutines.flow.Flow
 
 @Dao

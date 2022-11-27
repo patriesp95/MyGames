@@ -1,11 +1,10 @@
 package com.patriciamespert.mygamesac.ui.detail
 
 import androidx.lifecycle.*
-import com.patriciamespert.mygamesac.data.GamesRepository
-import com.patriciamespert.mygamesac.data.database.detail.GameDetail
-import com.patriciamespert.mygamesac.domain.FindGameUseCase
-import com.patriciamespert.mygamesac.domain.RequestGameUseCase
-import com.patriciamespert.mygamesac.domain.SwitchGameFavoriteUseCase
+import com.patriciamespert.mygamesac.domain.GameDetail
+import com.patriciamespert.mygamesac.usecases.FindGameUseCase
+import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
+import com.patriciamespert.mygamesac.usecases.SwitchGameFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

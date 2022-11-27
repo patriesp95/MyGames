@@ -1,11 +1,6 @@
-package com.patriciamespert.mygamesac.data.database.detail
+package com.patriciamespert.mygamesac.domain
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
 data class GameDetail (
-    @PrimaryKey(autoGenerate = true)
     val gameId: Int,
     val gameName: String,
     val gameNameOriginal: String,

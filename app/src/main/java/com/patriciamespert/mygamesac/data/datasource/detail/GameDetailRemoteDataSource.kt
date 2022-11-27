@@ -1,7 +1,7 @@
 package com.patriciamespert.mygamesac.data.datasource.detail
 
 import com.patriciamespert.mygamesac.GameDetailResponse
-import com.patriciamespert.mygamesac.core.RetrofitHelper
+import com.patriciamespert.mygamesac.data.core.RetrofitHelper
 import retrofit2.Response
 
 class GameDetailRemoteDataSource(

@@ -11,7 +11,7 @@ import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
 import com.patriciamespert.mygamesac.data.GamesRepository
-import com.patriciamespert.mygamesac.domain.*
+import com.patriciamespert.mygamesac.usecases.*
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
