@@ -23,16 +23,18 @@ class DetailViewModel(
     init {
         viewModelScope.launch {
             requestGameUseCase(gameId)
+            findGameUseCase(gameId)
+                    .collect { _state.value = UiState(it)}
         }
-        onUiReady()
+        //onUiReady()
     }
 
-    private fun onUiReady() {
+    /*private fun onUiReady() {
         viewModelScope.launch {
             findGameUseCase(gameId)
                 .collect { _state.value = UiState(it)}
         }
-    }
+    }*/
 
     fun onFavoriteClicked() {
         viewModelScope.launch {

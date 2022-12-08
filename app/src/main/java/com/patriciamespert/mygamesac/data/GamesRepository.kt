@@ -2,10 +2,8 @@ package com.patriciamespert.mygamesac.data
 
 import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
-import com.patriciamespert.mygamesac.GameResult
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.domain.GameDetail
-import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
 import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
@@ -26,20 +24,18 @@ class GamesRepository(application: App) {
 
     suspend fun requestDetailedGame(id: Int) = withContext(Dispatchers.IO){
         remoteGameDetailDataSource.findGameDetails(id) {
-            if (!localGameDetailDataSource.checkGameExists(it.gameId)) {
-                localGameDetailDataSource.save(it.toLocalDetailModel())
+            when(localGameDetailDataSource.checkGameExists(it.gameId)) {
+                0 -> localGameDetailDataSource.save(it.toDomainDetailModel())
+                1 -> print("Game ${it.gameName} already exists in the local database")
+                else -> print("unkown error")
             }
         }
     }
 
     suspend fun requestPopularGames() = withContext(Dispatchers.IO){
         if(localDataSource.isEmpty()){
-            val retrievedGames = remoteDataSource.findPopularGames().body()?.games
-            retrievedGames?.let {localDataSource.save(
-                retrievedGames.map {
-                    it.toLocalModel()
-                }
-            )}
+            val retrievedGames = remoteDataSource.findPopularGames()
+            retrievedGames?.let {localDataSource.save(it)}
         }
     }
 
@@ -51,19 +47,7 @@ class GamesRepository(application: App) {
 }
 
 
-private fun GameResult.toLocalModel(): Game = Game(
-
-    id,
-    name,
-    released,
-    background_image,
-    rating,
-    rating_top,
-    added,
-    false
-    )
-
-private fun GameDetailResponse.toLocalDetailModel(): GameDetail = GameDetail(
+private fun GameDetailResponse.toDomainDetailModel(): GameDetail = GameDetail(
     gameId,
     gameName,
     gameNameOriginal,

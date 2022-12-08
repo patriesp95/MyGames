@@ -12,7 +12,7 @@
             type="boolean" />
         <variable
             name="games"
-            type="com.patriciamespert.mygamesac.domain.Game" />
+            type="List&lt;Game>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

@@ -8,5 +8,5 @@ data class Game (
     val rating: Double,
     val ratingTop: Int,
     val added: Int,
-    val favorite: Boolean,
+    val favorite: Boolean
     )
