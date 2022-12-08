@@ -7,13 +7,26 @@ import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
 import com.patriciamespert.mygamesac.data.GamesRepository
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameServerDataSource
 import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
 import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainViewModel by viewModels {
-        val repository = GamesRepository(requireActivity().app)
+        val localDataSource = GameRoomDataSource(requireActivity().app.db.gameDao())
+        val remoteDataSource = GameServerDataSource(requireActivity().app.getString(R.string.api_key))
+        val localGameDetailDataSource = GameDetailRoomDataSource(requireActivity().app.db.gameDetailDao())
+        val remoteGameDetailDataSource = GameDetailServerDataSource(requireActivity().app.getString(R.string.api_key))
+        val repository = GamesRepository(
+            localDataSource,
+            remoteDataSource,
+            localGameDetailDataSource,
+            remoteGameDetailDataSource
+        )
         MainViewModelFactory(
             GetPopularGamesUseCase(repository),
             RequestPopularGamesUseCase(repository)
