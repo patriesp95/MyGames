@@ -44,7 +44,7 @@ private fun GameDetailDb.toDomainDetailModel(): GameDetail = GameDetail(
         gameBackgroundImage,
         gameRating,
         gameRatingTop,
-        false
+        favorite
 
 )
 
