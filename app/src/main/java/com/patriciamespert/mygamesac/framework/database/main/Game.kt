@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.database.main
+package com.patriciamespert.mygamesac.framework.database.main
 
 import android.os.Parcelable
 import androidx.room.Entity

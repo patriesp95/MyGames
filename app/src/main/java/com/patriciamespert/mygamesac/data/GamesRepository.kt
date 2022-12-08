@@ -4,19 +4,19 @@ import com.patriciamespert.mygamesac.App
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.domain.GameDetail
-import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
-import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
-import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameServerDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GamesRepository(application: App) {
 
-    private val localDataSource = GameLocalDataSource(application.db.gameDao())
-    private val remoteDataSource = GameRemoteDataSource(application.getString(R.string.api_key))
-    private val localGameDetailDataSource = GameDetailLocalDataSource(application.db.gameDetailDao())
-    private val remoteGameDetailDataSource = GameDetailRemoteDataSource(application.getString(R.string.api_key))
+    private val localDataSource = GameRoomDataSource(application.db.gameDao())
+    private val remoteDataSource = GameServerDataSource(application.getString(R.string.api_key))
+    private val localGameDetailDataSource = GameDetailRoomDataSource(application.db.gameDetailDao())
+    private val remoteGameDetailDataSource = GameDetailServerDataSource(application.getString(R.string.api_key))
 
     fun findById(id: Int) = localGameDetailDataSource.findById(id)
 

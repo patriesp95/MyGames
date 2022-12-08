@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.database.detail
+package com.patriciamespert.mygamesac.framework.database.detail
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

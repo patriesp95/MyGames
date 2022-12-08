@@ -2,11 +2,11 @@ package com.patriciamespert.mygamesac
 
 import android.app.Application
 import androidx.room.Room
-import com.patriciamespert.mygamesac.data.database.GameDatabase
+import com.patriciamespert.mygamesac.framework.database.GameDatabase
 
 class App: Application() {
 
-    lateinit var db:GameDatabase
+    lateinit var db: GameDatabase
         private set
 
     override fun onCreate() {
