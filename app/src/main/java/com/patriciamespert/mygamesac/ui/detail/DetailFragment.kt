@@ -11,6 +11,10 @@ import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
 import com.patriciamespert.mygamesac.data.GamesRepository
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameRoomDataSource
+import com.patriciamespert.mygamesac.framework.datasource.GameServerDataSource
 import com.patriciamespert.mygamesac.usecases.*
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -18,7 +22,19 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val safeArgs: DetailFragmentArgs by navArgs()
 
     private val viewModel: DetailViewModel by viewModels {
-        val repository = GamesRepository(requireActivity().app)
+
+        val localDataSource = GameRoomDataSource(requireActivity().app.db.gameDao())
+        val remoteDataSource = GameServerDataSource(requireActivity().app.getString(R.string.api_key))
+        val localGameDetailDataSource = GameDetailRoomDataSource(requireActivity().app.db.gameDetailDao())
+        val remoteGameDetailDataSource = GameDetailServerDataSource(requireActivity().app.getString(R.string.api_key))
+
+        val repository = GamesRepository(
+            localDataSource,
+            remoteDataSource,
+            localGameDetailDataSource,
+            remoteGameDetailDataSource
+        )
+
         DetailViewModelFactory(
             safeArgs.id,
             RequestGameUseCase(repository),
