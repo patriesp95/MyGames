@@ -1,6 +1,7 @@
-package com.patriciamespert.mygamesac.data
+package com.patriciamespert.mygamesac.framework.server
 
 import com.patriciamespert.mygamesac.GameDetailResponse
+import com.patriciamespert.mygamesac.framework.server.main.GameResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

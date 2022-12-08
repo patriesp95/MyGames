@@ -2,18 +2,18 @@ package com.patriciamespert.mygamesac.data
 
 import com.patriciamespert.mygamesac.GameDetailResponse
 import com.patriciamespert.mygamesac.domain.GameDetail
-import com.patriciamespert.mygamesac.framework.datasource.GameDetailServerDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameDetailRoomDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameRoomDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameServerDataSource
+import com.patriciamespert.mygamesac.framework.database.detail.GameDetailRoomDataSource
+import com.patriciamespert.mygamesac.framework.database.main.GameRoomDataSource
+import com.patriciamespert.mygamesac.framework.server.detail.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.framework.server.main.GameServerDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class GamesRepository(
-            private val localDataSource: GameRoomDataSource,
-            private val remoteDataSource: GameServerDataSource,
-            private val localGameDetailDataSource: GameDetailRoomDataSource,
-            private val remoteGameDetailDataSource: GameDetailServerDataSource
+    private val localDataSource: GameRoomDataSource,
+    private val remoteDataSource: GameServerDataSource,
+    private val localGameDetailDataSource: GameDetailRoomDataSource,
+    private val remoteGameDetailDataSource: GameDetailServerDataSource
 ) {
 
     fun findById(id: Int) = localGameDetailDataSource.findById(id)

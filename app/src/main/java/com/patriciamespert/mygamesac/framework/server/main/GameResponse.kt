@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data
+package com.patriciamespert.mygamesac.framework.server.main
 
 import com.google.gson.annotations.SerializedName
 import com.patriciamespert.mygamesac.GameResult

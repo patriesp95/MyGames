@@ -7,10 +7,10 @@ import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
 import com.patriciamespert.mygamesac.data.GamesRepository
-import com.patriciamespert.mygamesac.framework.datasource.GameDetailRoomDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameDetailServerDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameRoomDataSource
-import com.patriciamespert.mygamesac.framework.datasource.GameServerDataSource
+import com.patriciamespert.mygamesac.framework.database.detail.GameDetailRoomDataSource
+import com.patriciamespert.mygamesac.framework.database.main.GameRoomDataSource
+import com.patriciamespert.mygamesac.framework.server.detail.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.framework.server.main.GameServerDataSource
 import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
 import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
 

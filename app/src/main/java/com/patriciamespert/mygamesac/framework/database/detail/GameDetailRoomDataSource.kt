@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.framework.datasource
+package com.patriciamespert.mygamesac.framework.database.detail
 
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
 import com.patriciamespert.mygamesac.framework.database.detail.GameDetail as GameDetailDb

@@ -1,6 +1,6 @@
 package com.patriciamespert.mygamesac.data.core
 
-import com.patriciamespert.mygamesac.data.ApiService
+import com.patriciamespert.mygamesac.framework.server.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
