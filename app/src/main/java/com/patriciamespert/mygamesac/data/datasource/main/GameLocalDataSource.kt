@@ -31,7 +31,7 @@ private fun Game.fromDomainModel(): GameDb = GameDb(
         rating,
         ratingTop,
         added,
-        false
+        favorite
 )
 
 private fun List<GameDb>.toDomainModel(): List<Game> = map { it.toDomainModel() }
@@ -44,5 +44,5 @@ private fun GameDb.toDomainModel(): Game = Game(
         rating,
         ratingTop,
         added,
-        false
+        favorite
 )
