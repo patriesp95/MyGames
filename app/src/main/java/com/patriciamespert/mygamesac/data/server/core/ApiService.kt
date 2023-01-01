@@ -1,6 +1,6 @@
 package com.patriciamespert.mygamesac.data.datasource.core
 
-import com.patriciamespert.mygamesac.data.datasource.GameDetailResponse
+import com.patriciamespert.mygamesac.data.server.GameDetailResponse
 import com.patriciamespert.mygamesac.data.server.main.GameResponse
 
 import retrofit2.Response
@@ -20,7 +20,6 @@ interface ApiService {
 
     @GET("games/{id}")
     suspend fun getGameDetails(
-        @Path("id") id: String,
-        @Query("key") key: String
-        ): Response<GameDetailResponse>
+        @Path("id") id: String
+    ): Response<GameDetailResponse>
 }

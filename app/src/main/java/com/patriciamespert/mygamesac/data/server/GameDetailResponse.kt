@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.datasource
+package com.patriciamespert.mygamesac.data.server
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
@@ -24,7 +24,7 @@ data class GameDetailResponse (
     @SerializedName("rating_top") val gameRatingTop: Int,
     @SerializedName("ratings") val gameRatings:List<RatingDetailObj>,
     @Expose
-    @SerializedName("reactions") val gameReactions: ReactionDetailObj?=null,
+    @SerializedName("reactions") val gameReactions:ReactionDetailObj?=null,
     @SerializedName("added") val gameAddedDate: Int,
     @SerializedName("added_by_status") val gameAddedByStatus: StatusDetailObj,
     @SerializedName("playtime") val gamePlaytime: Int,
@@ -52,7 +52,7 @@ data class GameDetailResponse (
     @SerializedName("platforms") val gamePlatforms:List<PlatformDetailObj>,
     @SerializedName("clip") val gameClip: String?=null,
     @SerializedName("description_raw") val gameDescriptionRaw: String
-    ) : Parcelable
+) : Parcelable
 
 @Parcelize
 data class MetacriticPlatformObj(
@@ -72,7 +72,7 @@ data class RatingDetailObj(
 data class ReactionDetailObj(
     @Expose
     @SerializedName("1") val one: Int?=null,
-    ) : Parcelable
+) : Parcelable
 
 @Parcelize
 data class StatusDetailObj(
@@ -91,9 +91,9 @@ data class EsrbRatingDetailObj(
 
 @Parcelize
 data class PlatformDetailObj(
-    @SerializedName("platform") val gamePlatform: PlatformDetail?=null,
+    @SerializedName("platform") val gamePlatform:PlatformDetail?=null,
     @SerializedName("released_at") val gamePlatformReleased: String?=null,
-    @SerializedName("requirements") val gamePlatformRequirements: RequirementDetailObj?=null
+    @SerializedName("requirements") val gamePlatformRequirements:RequirementDetailObj?=null
 ) : Parcelable
 
 @Parcelize
