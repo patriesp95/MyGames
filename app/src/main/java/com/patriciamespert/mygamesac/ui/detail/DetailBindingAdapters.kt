@@ -4,7 +4,7 @@ import android.os.Build
 import android.text.Html
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.patriciamespert.mygamesac.domain.GameDetail
+import com.patriciamespert.domain.GameDetail
 
 @BindingAdapter("game")
 fun GameDetailInfoView.updateGameDetails(game: GameDetail?) {

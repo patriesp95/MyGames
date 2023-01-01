@@ -1,10 +1,10 @@
 package com.patriciamespert.mygamesac.ui.detail
 
 import androidx.lifecycle.*
-import com.patriciamespert.mygamesac.domain.GameDetail
-import com.patriciamespert.mygamesac.usecases.FindGameUseCase
-import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
-import com.patriciamespert.mygamesac.usecases.SwitchGameFavoriteUseCase
+import com.patriciamespert.domain.GameDetail
+import com.patriciamespert.usecases.FindGameUseCase
+import com.patriciamespert.usecases.RequestGameUseCase
+import com.patriciamespert.usecases.SwitchGameFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -26,15 +26,7 @@ class DetailViewModel(
             findGameUseCase(gameId)
                     .collect { _state.value = UiState(it)}
         }
-        //onUiReady()
     }
-
-    /*private fun onUiReady() {
-        viewModelScope.launch {
-            findGameUseCase(gameId)
-                .collect { _state.value = UiState(it)}
-        }
-    }*/
 
     fun onFavoriteClicked() {
         viewModelScope.launch {

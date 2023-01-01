@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
-import com.patriciamespert.mygamesac.domain.GameDetail
+import com.patriciamespert.domain.GameDetail
 
 class GameDetailInfoView @JvmOverloads constructor(
     context: Context,

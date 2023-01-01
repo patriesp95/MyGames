@@ -1,9 +1,9 @@
 package com.patriciamespert.mygamesac.ui.main
 
 import androidx.lifecycle.*
-import com.patriciamespert.mygamesac.domain.Game
-import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
-import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
+import com.patriciamespert.domain.Game
+import com.patriciamespert.usecases.GetPopularGamesUseCase
+import com.patriciamespert.usecases.RequestPopularGamesUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 

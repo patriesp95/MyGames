@@ -5,7 +5,7 @@
 
     <data>
         <import type="java.util.List"/>
-        <import type="com.patriciamespert.mygamesac.domain.Game"/>
+        <import type="com.patriciamespert.domain.Game"/>
 
         <variable
             name="loading"

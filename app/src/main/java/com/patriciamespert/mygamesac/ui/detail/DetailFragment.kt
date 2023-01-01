@@ -10,8 +10,11 @@ import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
-import com.patriciamespert.mygamesac.data.GamesRepository
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
 import com.patriciamespert.mygamesac.usecases.*
+import com.patriciamespert.usecases.FindGameUseCase
+import com.patriciamespert.usecases.RequestGameUseCase
+import com.patriciamespert.usecases.SwitchGameFavoriteUseCase
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 

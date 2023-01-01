@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
-import com.patriciamespert.mygamesac.data.GamesRepository
-import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
-import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
+import com.patriciamespert.usecases.GetPopularGamesUseCase
+import com.patriciamespert.usecases.RequestPopularGamesUseCase
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
