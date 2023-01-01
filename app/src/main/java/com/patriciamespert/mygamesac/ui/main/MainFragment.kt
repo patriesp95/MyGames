@@ -6,19 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
-import com.patriciamespert.mygamesac.data.datasource.GamesRepository
-import com.patriciamespert.usecases.GetPopularGamesUseCase
-import com.patriciamespert.usecases.RequestPopularGamesUseCase
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val viewModel: MainViewModel by viewModels {
-        val repository = GamesRepository(requireActivity().app)
-        MainViewModelFactory(
-            GetPopularGamesUseCase(repository),
-            RequestPopularGamesUseCase(repository)
-        )
-    }
+    private val viewModel: MainViewModel by viewModels {app.component.mainViewModelFactory}
 
     private lateinit var mainState: MainState
 

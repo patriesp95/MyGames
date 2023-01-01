@@ -10,25 +10,13 @@ import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
-import com.patriciamespert.mygamesac.data.datasource.GamesRepository
-import com.patriciamespert.mygamesac.usecases.*
-import com.patriciamespert.usecases.FindGameUseCase
-import com.patriciamespert.usecases.RequestGameUseCase
-import com.patriciamespert.usecases.SwitchGameFavoriteUseCase
+
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private val safeArgs: DetailFragmentArgs by navArgs()
 
-    private val viewModel: DetailViewModel by viewModels {
-        val repository = GamesRepository(requireActivity().app)
-        DetailViewModelFactory(
-            safeArgs.id,
-            RequestGameUseCase(repository),
-            FindGameUseCase(repository),
-            SwitchGameFavoriteUseCase(repository)
-            )
-    }
+    private val viewModel: DetailViewModel by viewModels {app.component.detailViewModelFactory}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
