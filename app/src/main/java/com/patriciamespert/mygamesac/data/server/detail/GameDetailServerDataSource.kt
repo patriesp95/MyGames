@@ -4,10 +4,11 @@ package com.patriciamespert.mygamesac.data.server
 import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
 import com.patriciamespert.mygamesac.data.datasource.GameDetailResponse
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
-import com.patriciamespert.mygamesac.domain.GameDetail
+import com.patriciamespert.mygamesac.di.ApiKey
 import retrofit2.Response
+import javax.inject.Inject
 
-class GameDetailServerDataSource(
+class GameDetailServerDataSource @Inject constructor(@ApiKey
     private val apiKey: String
 ) : GameDetailRemoteDataSource {
 

@@ -3,9 +3,11 @@ package com.patriciamespert.mygamesac.data.server
 import com.patriciamespert.mygamesac.data.datasource.GameResult
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
 import com.patriciamespert.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.di.ApiKey
+import javax.inject.Inject
 
-class GameServerDataSource(
-    private val apiKey: String
+class GameServerDataSource @Inject constructor(
+    @ApiKey private val apiKey: String
 ) : GameRemoteDataSource {
     override suspend fun findPopularGames() =
         RetrofitHelper.service

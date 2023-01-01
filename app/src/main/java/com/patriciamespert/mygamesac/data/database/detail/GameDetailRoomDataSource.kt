@@ -3,10 +3,12 @@ package com.patriciamespert.mygamesac.data.database.detail
 import com.patriciamespert.data.datasource.detail.GameDetailLocalDataSource
 import com.patriciamespert.domain.GameDetail
 import com.patriciamespert.mygamesac.data.database.database.detail.GameDetailDao
+import com.patriciamespert.mygamesac.data.database.GameDetail as GameDetailDb
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GameDetailRoomDataSource(private val gameDetailDao: GameDetailDao) :
+class GameDetailRoomDataSource @Inject constructor(private val gameDetailDao: GameDetailDao) :
     GameDetailLocalDataSource {
     override fun findById(id:Int):Flow<GameDetail> = gameDetailDao.findById(id).map { it.toDomainDetailModel() }
 

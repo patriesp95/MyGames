@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.database.database.detail
+package com.patriciamespert.mygamesac.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

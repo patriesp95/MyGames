@@ -2,13 +2,16 @@ package com.patriciamespert.mygamesac.data.database.main
 
 import com.patriciamespert.data.datasource.main.GameLocalDataSource
 import com.patriciamespert.domain.Game
-import com.patriciamespert.mygamesac.data.database.main.Game as GameDb
+import com.patriciamespert.mygamesac.data.database.Game as GameDb
 import com.patriciamespert.mygamesac.data.database.database.main.GameDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GameRoomDataSource(private val gameDao: GameDao) : GameLocalDataSource {
-    override val games: Flow<List<Game>> = gameDao.getAll().map {it.toDomainModel()}
+class GameRoomDataSource @Inject constructor (private val gameDao: GameDao) : GameLocalDataSource {
+    override val games: Flow<List<Game>> = gameDao.getAll().map {
+        it.toDomainModel()
+    }
 
     override fun isEmpty(): Boolean = gameDao.gameCount() == 0
 

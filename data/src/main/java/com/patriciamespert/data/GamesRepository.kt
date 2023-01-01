@@ -7,9 +7,10 @@ import com.patriciamespert.data.datasource.main.GameRemoteDataSource
 import com.patriciamespert.domain.GameDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 
-class GamesRepository(
+class GamesRepository @Inject constructor(
 
     private val localDataSource: GameLocalDataSource,
     private val remoteDataSource: GameRemoteDataSource,
