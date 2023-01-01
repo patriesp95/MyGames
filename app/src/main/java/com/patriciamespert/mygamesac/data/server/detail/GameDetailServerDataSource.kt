@@ -21,13 +21,9 @@ class GameDetailServerDataSource @Inject constructor(
 
 }
 
-private fun List<GameDetailResponse>.toDomainModel(): List<com.patriciamespert.domain.GameDetail> = map {
-    it.toDomainModel()
-}
 
-
-private fun GameDetailResponse.toDomainModel(): com.patriciamespert.domain.GameDetail =
-    com.patriciamespert.domain.GameDetail(
+private fun GameDetailResponse.toDomainModel(): GameDetail =
+   GameDetail(
 
         gameId,
         gameName,
