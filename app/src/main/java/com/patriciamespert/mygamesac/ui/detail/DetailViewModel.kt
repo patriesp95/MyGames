@@ -34,7 +34,8 @@ class DetailViewModel(
         }
     }
 
-    class UiState(val game: GameDetail? = null)
+    data class UiState(val game: GameDetail? = null)
+
 }
 
 @Suppress("UNCHECKED_CAST")
