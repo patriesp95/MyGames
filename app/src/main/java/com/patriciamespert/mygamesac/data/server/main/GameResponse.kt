@@ -1,6 +1,7 @@
-package com.patriciamespert.mygamesac.data.datasource
+package com.patriciamespert.mygamesac.data.server.main
 
 import com.google.gson.annotations.SerializedName
+import com.patriciamespert.mygamesac.data.datasource.GameResult
 
 data class GameResponse(
     @SerializedName("count") var totalGames: Int,
