@@ -22,7 +22,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    @Named("apiKey")
+    @ApiKey
     fun provideApiKey(app: Application): String = app.getString(R.string.api_key)
 
     @Provides
@@ -42,10 +42,10 @@ object AppModule {
         GameDetailRoomDataSource(db.gameDetailDao())
 
     @Provides
-    fun provideRemoteDataSource(@Named("apiKey") apiKey: String): GameRemoteDataSource =
+    fun provideRemoteDataSource(@ApiKey apiKey: String): GameRemoteDataSource =
         GameServerDataSource(apiKey)
 
     @Provides
-    fun provideRemoteDetailDataSource(@Named("apiKey") apiKey: String): GameDetailRemoteDataSource =
+    fun provideRemoteDetailDataSource(@ApiKey apiKey: String): GameDetailRemoteDataSource =
         GameDetailServerDataSource(apiKey)
 }
