@@ -1,12 +1,10 @@
-<<<<<<<< HEAD:app/src/main/java/com/patriciamespert/mygamesac/data/server/detail/GameDetailServerDataSource.kt
 package com.patriciamespert.mygamesac.data.server
-========
-package com.patriciamespert.mygamesac.framework.server.detail
->>>>>>>> origin/main:app/src/main/java/com/patriciamespert/mygamesac/framework/server/detail/GameDetailServerDataSource.kt
+
 
 import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
 import com.patriciamespert.mygamesac.data.datasource.GameDetailResponse
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
+import com.patriciamespert.mygamesac.domain.GameDetail
 import retrofit2.Response
 
 class GameDetailServerDataSource(
