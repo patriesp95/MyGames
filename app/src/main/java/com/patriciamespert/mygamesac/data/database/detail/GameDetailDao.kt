@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.database.database.detail
+package com.patriciamespert.mygamesac.data.database.detail
 
 import androidx.room.*
 import com.patriciamespert.mygamesac.data.database.GameDetail

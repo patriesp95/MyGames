@@ -12,6 +12,7 @@ import com.patriciamespert.mygamesac.data.database.detail.GameDetailRoomDataSour
 import com.patriciamespert.mygamesac.data.database.main.GameRoomDataSource
 import com.patriciamespert.mygamesac.data.server.GameDetailServerDataSource
 import com.patriciamespert.mygamesac.data.server.GameServerDataSource
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -32,19 +33,32 @@ object AppModule {
         "game-db"
     ).build()
 
-    @Provides
-    fun provideLocalDataSource(db: GameDatabase): GameLocalDataSource =
-        GameRoomDataSource(db.gameDao())
 
     @Provides
-    fun provideLocalDetailDataSource(db: GameDatabase): GameDetailLocalDataSource =
-        GameDetailRoomDataSource(db.gameDetailDao())
+    @Singleton
+    fun provideGameDao(db: GameDatabase) = db.gameDao()
+
 
     @Provides
-    fun provideRemoteDataSource(@ApiKey apiKey: String): GameRemoteDataSource =
-        GameServerDataSource(apiKey)
+    @Singleton
+    fun provideGameDetailDao(db: GameDatabase) = db.gameDetailDao()
 
-    @Provides
-    fun provideRemoteDetailDataSource(@ApiKey apiKey: String): GameDetailRemoteDataSource =
-        GameDetailServerDataSource(apiKey)
+
+}
+
+@Module
+abstract class AppDataModule{
+    @Binds
+    abstract fun bindLocalDataSource(localDataSource: GameRoomDataSource): GameLocalDataSource
+
+    @Binds
+    abstract fun bindLocalDetailDataSource(bindLocalDetailDataSource: GameDetailRoomDataSource): GameDetailLocalDataSource
+
+
+    @Binds
+    abstract fun bindRemoteDataSource(remoteDataSource: GameServerDataSource): GameRemoteDataSource
+
+
+    @Binds
+    abstract fun bindRemoteDetailDataSource(remoteDetailRemoteDataSource: GameDetailServerDataSource): GameDetailRemoteDataSource
 }

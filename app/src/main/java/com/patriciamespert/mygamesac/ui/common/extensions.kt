@@ -12,8 +12,13 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DiffUtil
+import arrow.core.Either
+import arrow.core.left
+import arrow.core.right
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 fun Context.toast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

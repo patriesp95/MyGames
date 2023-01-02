@@ -25,11 +25,11 @@ class GamesRepository @Inject constructor(
 
     suspend fun requestDetailedGame(id: Int) = withContext(Dispatchers.IO){
         remoteGameDetailDataSource.findGameDetails(id) {
-            when(localGameDetailDataSource.checkGameExists(it.gameId)) {
+           when(localGameDetailDataSource.checkGameExists(it.gameId)) {
                 0 -> localGameDetailDataSource.save(it)
                 1 -> print("Game ${it.gameName} already exists in the local database")
                 else -> print("unkown error")
-            }
+           }
         }
     }
 
