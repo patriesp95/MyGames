@@ -1,6 +1,6 @@
-package com.patriciamespert.data.datasource.main
+package com.patriciamespert.mygamesac.data.datasource.main
 
-import com.patriciamespert.domain.Game
+import com.patriciamespert.mygamesac.domain.Game
 import kotlinx.coroutines.flow.Flow
 
 interface GameLocalDataSource {

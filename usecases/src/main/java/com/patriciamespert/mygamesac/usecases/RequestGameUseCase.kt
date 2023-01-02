@@ -1,6 +1,6 @@
-package com.patriciamespert.usecases
+package com.patriciamespert.mygamesac.usecases
 
-import com.patriciamespert.data.datasource.GamesRepository
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
 import javax.inject.Inject
 
 class RequestGameUseCase @Inject constructor (private val repository: GamesRepository) {

@@ -2,7 +2,7 @@ package com.patriciamespert.mygamesac.di
 
 import com.patriciamespert.mygamesac.ui.detail.DetailViewModelFactory
 import com.patriciamespert.mygamesac.ui.main.MainViewModelFactory
-import com.patriciamespert.usecases.*
+import com.patriciamespert.mygamesac.usecases.*
 import dagger.Module
 import dagger.Provides
 

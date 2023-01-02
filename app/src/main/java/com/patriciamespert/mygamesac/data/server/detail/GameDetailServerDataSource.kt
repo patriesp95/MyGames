@@ -1,8 +1,8 @@
 package com.patriciamespert.mygamesac.data.server
 
 
-import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.domain.GameDetail
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.domain.GameDetail
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
 import com.patriciamespert.mygamesac.di.ApiKey
 import retrofit2.Response
@@ -15,6 +15,7 @@ class GameDetailServerDataSource @Inject constructor(
     override suspend fun findGameDetails(id: Int, onComplete: (GameDetail) -> Unit) {
         val call: Response<GameDetailResponse> = RetrofitHelper.service
             .getGameDetails(
+                id.toString(),
                 apiKey
             )
 

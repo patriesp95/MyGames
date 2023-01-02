@@ -1,10 +1,10 @@
 package com.patriciamespert.mygamesac.di
 
-import com.patriciamespert.data.datasource.GamesRepository
-import com.patriciamespert.data.datasource.detail.GameDetailLocalDataSource
-import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.data.datasource.main.GameLocalDataSource
-import com.patriciamespert.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import dagger.Module
 import dagger.Provides
 

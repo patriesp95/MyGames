@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.patriciamespert.domain.Game"/>
+        <import type="com.patriciamespert.mygamesac.domain.Game"/>
 
         <variable
             name="game"
-            type="com.patriciamespert.domain.Game"/>
+            type="com.patriciamespert.mygamesac.domain.Game"/>
     </data>
 
     <LinearLayout

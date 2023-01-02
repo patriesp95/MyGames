@@ -1,8 +1,8 @@
 package com.patriciamespert.mygamesac.ui.detail
 
-import com.patriciamespert.usecases.FindGameUseCase
-import com.patriciamespert.usecases.RequestGameUseCase
-import com.patriciamespert.usecases.SwitchGameFavoriteUseCase
+import com.patriciamespert.mygamesac.usecases.FindGameUseCase
+import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
+import com.patriciamespert.mygamesac.usecases.SwitchGameFavoriteUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent

@@ -1,7 +1,7 @@
 package com.patriciamespert.mygamesac.di
 
-import com.patriciamespert.data.datasource.GamesRepository
-import com.patriciamespert.usecases.*
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
+import com.patriciamespert.mygamesac.usecases.*
 import dagger.Module
 import dagger.Provides
 

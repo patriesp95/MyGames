@@ -1,10 +1,10 @@
-package com.patriciamespert.data.datasource
+package com.patriciamespert.mygamesac.data.datasource
 
-import com.patriciamespert.data.datasource.detail.GameDetailLocalDataSource
-import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.data.datasource.main.GameLocalDataSource
-import com.patriciamespert.data.datasource.main.GameRemoteDataSource
-import com.patriciamespert.domain.GameDetail
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.domain.GameDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

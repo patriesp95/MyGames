@@ -1,7 +1,7 @@
 package com.patriciamespert.mygamesac.ui.main
 
-import com.patriciamespert.usecases.GetPopularGamesUseCase
-import com.patriciamespert.usecases.RequestPopularGamesUseCase
+import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
+import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent

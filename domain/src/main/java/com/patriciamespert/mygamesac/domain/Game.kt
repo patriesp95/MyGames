@@ -1,4 +1,4 @@
-package com.patriciamespert.domain
+package com.patriciamespert.mygamesac.domain
 
 data class Game (
     val id: Int,

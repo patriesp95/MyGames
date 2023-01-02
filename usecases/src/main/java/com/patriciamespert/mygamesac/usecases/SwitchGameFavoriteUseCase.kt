@@ -1,7 +1,7 @@
-package com.patriciamespert.usecases
+package com.patriciamespert.mygamesac.usecases
 
-import com.patriciamespert.data.datasource.GamesRepository
-import com.patriciamespert.domain.GameDetail
+import com.patriciamespert.mygamesac.data.datasource.GamesRepository
+import com.patriciamespert.mygamesac.domain.GameDetail
 import javax.inject.Inject
 
 class SwitchGameFavoriteUseCase @Inject constructor (private val repository: GamesRepository) {

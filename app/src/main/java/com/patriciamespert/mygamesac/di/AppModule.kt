@@ -2,10 +2,10 @@ package com.patriciamespert.mygamesac.di
 
 import android.app.Application
 import androidx.room.Room
-import com.patriciamespert.data.datasource.detail.GameDetailLocalDataSource
-import com.patriciamespert.data.datasource.detail.GameDetailRemoteDataSource
-import com.patriciamespert.data.datasource.main.GameLocalDataSource
-import com.patriciamespert.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.data.database.database.GameDatabase
 import com.patriciamespert.mygamesac.data.database.detail.GameDetailRoomDataSource
@@ -14,7 +14,6 @@ import com.patriciamespert.mygamesac.data.server.GameDetailServerDataSource
 import com.patriciamespert.mygamesac.data.server.GameServerDataSource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

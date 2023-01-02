@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.patriciamespert.domain.GameDetail"/>
+        <import type="com.patriciamespert.mygamesac.domain.GameDetail"/>
 
         <variable
             name="detailedGame"
-            type="com.patriciamespert.domain.GameDetail" />
+            type="com.patriciamespert.mygamesac.domain.GameDetail" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

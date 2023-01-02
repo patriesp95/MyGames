@@ -2,8 +2,9 @@ package com.patriciamespert.mygamesac.data.server
 
 import com.patriciamespert.mygamesac.data.datasource.GameResult
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
-import com.patriciamespert.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import com.patriciamespert.mygamesac.di.ApiKey
+import com.patriciamespert.mygamesac.domain.Game
 import javax.inject.Inject
 
 class GameServerDataSource @Inject constructor(
@@ -16,11 +17,11 @@ class GameServerDataSource @Inject constructor(
             ).body()?.games?.toDomainModel()
 }
 
-private fun List<GameResult>.toDomainModel(): List<com.patriciamespert.domain.Game> = map { it.toDomainModel() }
+private fun List<GameResult>.toDomainModel(): List<Game> = map { it.toDomainModel() }
 
 
-private fun GameResult.toDomainModel(): com.patriciamespert.domain.Game =
-    com.patriciamespert.domain.Game(
+private fun GameResult.toDomainModel(): Game =
+    Game(
 
         id,
         name,
