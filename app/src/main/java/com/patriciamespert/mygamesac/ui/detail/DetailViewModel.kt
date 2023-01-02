@@ -7,30 +7,34 @@ import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
 import com.patriciamespert.mygamesac.usecases.SwitchGameFavoriteUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val gameId: Int,
-    private val requestGameUseCase: RequestGameUseCase,
-    private val findGameUseCase: FindGameUseCase,
+    gameId: Int,
+    requestGameUseCase: RequestGameUseCase,
+    findGameUseCase: FindGameUseCase,
     private val switchGameFavoriteUseCase: SwitchGameFavoriteUseCase
 
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
-    val state: StateFlow<UiState> get() = _state
+    val state: StateFlow<UiState> = _state.asStateFlow()
+
 
     init {
         viewModelScope.launch {
             requestGameUseCase(gameId)
             findGameUseCase(gameId)
-                    .collect { _state.value = UiState(it)}
+                .collect { game -> _state.update { UiState(game = game) }}
+
         }
     }
 
     fun onFavoriteClicked() {
         viewModelScope.launch {
-            _state.value.game?.let {switchGameFavoriteUseCase(it)}
+            _state.value.game?.let {game -> switchGameFavoriteUseCase(game)}
         }
     }
 
