@@ -5,27 +5,16 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.patriciamespert.mygamesac.R
-import com.patriciamespert.mygamesac.app
 import com.patriciamespert.mygamesac.databinding.FragmentDetailBinding
 import com.patriciamespert.mygamesac.launchAndCollect
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
-    private val safeArgs: DetailFragmentArgs by navArgs()
+    private val viewModel: DetailViewModel by viewModels()
 
-    @Inject
-    lateinit var vmFactory: DetailViewModelAssistedFactory
-
-    private val viewModel: DetailViewModel by viewModels { vmFactory.create(safeArgs.id) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        app.component.inject(this)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

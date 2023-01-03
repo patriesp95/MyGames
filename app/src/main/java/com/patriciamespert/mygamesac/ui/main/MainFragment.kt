@@ -6,24 +6,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class MainFragment : Fragment(R.layout.fragment_main) {
 
-    @Inject
-    lateinit var vmFactory: MainViewModelFactory
-
-    private val viewModel: MainViewModel by viewModels { vmFactory }
+    private val viewModel: MainViewModel by viewModels()
 
     private lateinit var mainState: MainState
 
     private val adapter = GamesAdapter { mainState.onGameClicked(it) }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        app.component.inject(this)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
