@@ -6,6 +6,7 @@ import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
 import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainViewModel(
     private val getPopularGamesUseCase: GetPopularGamesUseCase,
@@ -40,7 +41,7 @@ class MainViewModel(
 }
 
 @Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(
+class MainViewModelFactory @Inject constructor(
     private val getPopularGamesUseCase: GetPopularGamesUseCase,
     private val requestPopularGamesUseCase: RequestPopularGamesUseCase
 ) :

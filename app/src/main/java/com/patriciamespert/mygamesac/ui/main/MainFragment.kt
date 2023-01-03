@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.patriciamespert.mygamesac.*
 import com.patriciamespert.mygamesac.databinding.FragmentMainBinding
+import javax.inject.Inject
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private lateinit var component: MainFragmentComponent
 
-    private val viewModel: MainViewModel by viewModels { component.mainViewModelFactory }
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
+
+    private val viewModel: MainViewModel by viewModels { vmFactory }
 
     private lateinit var mainState: MainState
 
@@ -19,7 +22,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        component = app.component.plus(MainFragmentModule())
+        app.component.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
