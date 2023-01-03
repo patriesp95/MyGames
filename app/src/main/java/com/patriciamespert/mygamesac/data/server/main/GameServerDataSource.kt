@@ -1,20 +1,24 @@
 package com.patriciamespert.mygamesac.data.server.main
 
-import com.patriciamespert.mygamesac.data.datasource.GameResult
-import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper
 import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
+import com.patriciamespert.mygamesac.data.server.GameResult
+import com.patriciamespert.mygamesac.data.core.ApiService
 import com.patriciamespert.mygamesac.di.ApiKey
 import com.patriciamespert.mygamesac.domain.Game
 import javax.inject.Inject
 
 class GameServerDataSource @Inject constructor(
-    @ApiKey private val apiKey: String
-) : GameRemoteDataSource {
-    override suspend fun findPopularGames() =
-        RetrofitHelper.service
+    @ApiKey private val apiKey: String,
+    private val remoteService: ApiService
+) :
+    GameRemoteDataSource {
+    override suspend fun findPopularGames(): List<Game>? {
+        return remoteService
             .listPopularGames(
                 apiKey
-            ).body()?.games?.toDomainModel()
+            ).games?.toDomainModel()
+    }
+
 }
 
 private fun List<GameResult>.toDomainModel(): List<Game> = map { it.toDomainModel() }

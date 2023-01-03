@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.datasource
+package com.patriciamespert.mygamesac.data.server
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -17,7 +17,7 @@ data class GameResult(
     val ratings_count: Int,
     val reviews_text_count: Int,
     val added: Int,
-    val added_by_status: StatusObj,
+    val added_by_status: StatusObj?=null,
     val metacritic: Int,
     val playtime: Int,
     val suggestions_count:Int,

@@ -1,9 +1,8 @@
-package com.patriciamespert.mygamesac.data.server.core
+package com.patriciamespert.mygamesac.data.core
 
-import com.patriciamespert.mygamesac.data.server.GameDetailResponse
+import com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse
 import com.patriciamespert.mygamesac.data.server.main.GameResponse
 
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -16,11 +15,11 @@ interface ApiService {
         @Query("ordering") ordering: String = "-rating",
         @Query("platforms_count") platforms_count: Int = 7,
         //@Query("page") page: Int = 2
-    ): Response<GameResponse>
+    ): GameResponse
 
     @GET("games/{id}")
     suspend fun getGameDetails(
         @Path("id") id: String,
         @Query("key") key: String,
-    ): Response<GameDetailResponse>
+    ): GameDetailResponse
 }

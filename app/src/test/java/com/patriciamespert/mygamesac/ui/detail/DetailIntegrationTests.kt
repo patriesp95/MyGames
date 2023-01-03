@@ -4,9 +4,8 @@ import app.cash.turbine.test
 import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.domain.GameDetail
 import com.patriciamespert.mygamesac.testrules.CoroutinesTestRule
-import com.patriciamespert.mygamesac.testshared.sampleGame
 import com.patriciamespert.mygamesac.testshared.sampleGameDetail
-import com.patriciamespert.mygamesac.ui.common.buildRepositoryWith
+import com.patriciamespert.mygamesac.appTestShared.buildRepositoryWith
 import com.patriciamespert.mygamesac.ui.detail.DetailViewModel.UiState
 import com.patriciamespert.mygamesac.usecases.FindGameUseCase
 import com.patriciamespert.mygamesac.usecases.RequestGameUseCase

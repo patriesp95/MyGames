@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.server
+package com.patriciamespert.mygamesac.data.server.detail
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GameDetailResponse (
+data class GameDetailResponse(
     @SerializedName("id") val gameId: Int,
     @SerializedName("slug") val gameSlug: String,
     @SerializedName("name") val gameName: String,
@@ -24,9 +24,9 @@ data class GameDetailResponse (
     @SerializedName("rating_top") val gameRatingTop: Int,
     @SerializedName("ratings") val gameRatings:List<RatingDetailObj>,
     @Expose
-    @SerializedName("reactions") val gameReactions:ReactionDetailObj?=null,
+    @SerializedName("reactions") val gameReactions: ReactionDetailObj?=null,
     @SerializedName("added") val gameAddedDate: Int,
-    @SerializedName("added_by_status") val gameAddedByStatus: StatusDetailObj,
+    @SerializedName("added_by_status") val gameAddedByStatus: StatusDetailObj?=null,
     @SerializedName("playtime") val gamePlaytime: Int,
     @SerializedName("screenshots_count") val gameScreenshotsCount: Int,
     @SerializedName("movies_count") val gameMoviesCount: Int,
@@ -37,7 +37,7 @@ data class GameDetailResponse (
     @SerializedName("reddit_name") val gameRedditName: String,
     @SerializedName("reddit_description") val gameRedditDescription: String,
     @SerializedName("reddit_logo") val gameRedditLogo: String,
-    @SerializedName("reddit_count") val gameRedditCount: Integer,
+    @SerializedName("reddit_count") val gameRedditCount: Int,
     @SerializedName("twitch_count") val gameTwitchCount: String,
     @SerializedName("youtube_count") val gameYoutubeCount:String,
     @SerializedName("reviews_text_count") val gameReviewsTextCount: String,
@@ -49,7 +49,7 @@ data class GameDetailResponse (
     @SerializedName("additions_count") val gameAdditionsCount: Int,
     @SerializedName("game_series_count") val gameSeriesCount: Int,
     @SerializedName("esrb_rating") val gameEsrbRating: EsrbRatingDetailObj?=null,
-    @SerializedName("platforms") val gamePlatforms:List<PlatformDetailObj>,
+    @SerializedName("platforms") val gamePlatforms:List<PlatformDetailObj>?=null,
     @SerializedName("clip") val gameClip: String?=null,
     @SerializedName("description_raw") val gameDescriptionRaw: String
 ) : Parcelable
@@ -91,9 +91,9 @@ data class EsrbRatingDetailObj(
 
 @Parcelize
 data class PlatformDetailObj(
-    @SerializedName("platform") val gamePlatform:PlatformDetail?=null,
+    @SerializedName("platform") val gamePlatform: PlatformDetail?=null,
     @SerializedName("released_at") val gamePlatformReleased: String?=null,
-    @SerializedName("requirements") val gamePlatformRequirements:RequirementDetailObj?=null
+    @SerializedName("requirements") val gamePlatformRequirements: RequirementDetailObj?=null
 ) : Parcelable
 
 @Parcelize

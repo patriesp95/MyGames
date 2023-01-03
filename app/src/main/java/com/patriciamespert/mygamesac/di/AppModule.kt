@@ -7,16 +7,22 @@ import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteData
 import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import com.patriciamespert.mygamesac.R
+import com.patriciamespert.mygamesac.data.core.ApiService
 import com.patriciamespert.mygamesac.data.database.database.GameDatabase
 import com.patriciamespert.mygamesac.data.database.detail.GameDetailRoomDataSource
-import com.patriciamespert.mygamesac.data.database.main.GameRoomDataSource
-import com.patriciamespert.mygamesac.data.server.GameDetailServerDataSource
+import com.patriciamespert.mygamesac.data.server.database.main.GameRoomDataSource
+import com.patriciamespert.mygamesac.data.server.detail.GameDetailServerDataSource
 import com.patriciamespert.mygamesac.data.server.main.GameServerDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -45,6 +51,23 @@ object AppModule {
     @Provides
     @Singleton
     fun provideGameDetailDao(db: GameDatabase) = db.gameDetailDao()
+
+
+    @Provides
+    @Singleton
+    fun provideRemoteService(): ApiService {
+        val okHttpClient = HttpLoggingInterceptor().run {
+            level = HttpLoggingInterceptor.Level.BODY
+            OkHttpClient.Builder().addInterceptor(this).build()
+        }
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.rawg.io/api/")
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create()
+    }
 
 
 }
