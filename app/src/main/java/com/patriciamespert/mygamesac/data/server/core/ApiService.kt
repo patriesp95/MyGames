@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.datasource.core
+package com.patriciamespert.mygamesac.data.server.core
 
 import com.patriciamespert.mygamesac.data.server.GameDetailResponse
 import com.patriciamespert.mygamesac.data.server.main.GameResponse

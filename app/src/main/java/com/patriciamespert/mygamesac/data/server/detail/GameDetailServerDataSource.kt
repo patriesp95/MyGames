@@ -12,25 +12,22 @@ class GameDetailServerDataSource @Inject constructor(
     @ApiKey private val apiKey: String
 ) : GameDetailRemoteDataSource {
 
-    override suspend fun findGameDetails(id: Int, onComplete: (GameDetail) -> Unit) {
-        val call: Response<GameDetailResponse> = RetrofitHelper.service
-            .getGameDetails(
-                id.toString(),
-                apiKey
-            )
 
+    override suspend fun findGameDetails(id: Int, onComplete: (GameDetail) -> Unit) {
+        val call: Response<GameDetailResponse> = RetrofitHelper.service.getGameDetails(id.toString(), apiKey)
         if(call.isSuccessful){
             val game = call.body()
             game?.let {
-                it.toDomainModel()
+                onComplete.invoke(game.toDomainModel())
             }
         }
+
     }
 }
 
 
 private fun GameDetailResponse.toDomainModel(): GameDetail =
-   GameDetail(
+    GameDetail(
 
         gameId,
         gameName,
