@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.datasource
+package com.patriciamespert.mygamesac.data
 
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailLocalDataSource
 import com.patriciamespert.mygamesac.data.datasource.detail.GameDetailRemoteDataSource

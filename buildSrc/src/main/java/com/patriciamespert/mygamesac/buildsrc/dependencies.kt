@@ -38,7 +38,7 @@ object Libs {
         }
 
         object Navigation {
-            private const val version = "2.4.1"
+            private const val version = "2.5.3"
             const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
             const val gradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
@@ -70,7 +70,7 @@ object Libs {
     }
 
     object OkHttp3 {
-        private const val version = "4.9.2"
+        private const val version = "4.9.3"
         const val loginInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
@@ -95,6 +95,11 @@ object Libs {
     object JUnit {
         private const val version = "4.13.2"
         const val junit = "junit:junit:$version"
+    }
+
+    object Mockito {
+        const val kotlin = "org.mockito.kotlin:mockito-kotlin:4.0.0"
+        const val inline = "org.mockito:mockito-inline:4.4.0"
     }
 
     object JavaX {

@@ -8,5 +8,5 @@ data class GameDetail (
     val gameBackgroundImage: String,
     val gameRating: Double,
     val gameRatingTop: Int,
-    val favorite: Boolean
+    var favorite: Boolean
     )
