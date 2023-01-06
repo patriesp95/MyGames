@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.database.database.main
+package com.patriciamespert.mygamesac.data.database.main
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -21,8 +21,8 @@ interface GameDao {
     fun insertGames(games: List<Game>)
 
     @Update
-    fun updateGame(game: Game)
+    fun updateGame(game: Game): Int
 
     @Query("UPDATE game SET favorite =:favorite WHERE id = :id")
-    suspend fun updateFavorite(id: Int, favorite: Boolean)
+    suspend fun updateFavorite(id: Int, favorite: Boolean): Int
 }

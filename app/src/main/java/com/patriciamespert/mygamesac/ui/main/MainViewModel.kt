@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getPopularGamesUseCase: GetPopularGamesUseCase,
+    getPopularGamesUseCase: GetPopularGamesUseCase,
     private val requestPopularGamesUseCase: RequestPopularGamesUseCase
 ): ViewModel() {
 
@@ -28,11 +28,11 @@ class MainViewModel @Inject constructor(
         onUiReady()
     }
 
-    private fun onUiReady() {
+    fun onUiReady() {
         viewModelScope.launch {
-            _state.value = UiState(loading = true)
+            _state.value = _state.value.copy(loading = true)
             requestPopularGamesUseCase()
-            _state.value = UiState(loading = false)
+            _state.value = _state.value.copy(loading = false)
         }
     }
 

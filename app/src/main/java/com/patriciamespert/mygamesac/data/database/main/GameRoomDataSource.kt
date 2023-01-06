@@ -3,7 +3,6 @@ package com.patriciamespert.mygamesac.data.database.main
 import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.data.database.Game as GameDb
-import com.patriciamespert.mygamesac.data.database.database.main.GameDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

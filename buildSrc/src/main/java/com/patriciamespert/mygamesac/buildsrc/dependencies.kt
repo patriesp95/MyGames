@@ -9,12 +9,14 @@ object Libs {
     const val playServicesLocation = "com.google.android.gms:play-services-location:19.0.1"
 
     object Kotlin {
-        private const val version = "1.6.10"
+        private const val version = "1.7.0"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
 
         object Coroutines {
             private const val version = "1.6.0"
             const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+            const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+
         }
     }
 
@@ -86,7 +88,7 @@ object Libs {
     }
 
     object Hilt {
-        private const val version = "2.41"
+        private const val version = "2.42"
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
@@ -105,4 +107,6 @@ object Libs {
     object JavaX {
         const val inject = "javax.inject:javax.inject:1"
     }
+
+    const val turbine = "app.cash.turbine:turbine:0.7.0"
 }

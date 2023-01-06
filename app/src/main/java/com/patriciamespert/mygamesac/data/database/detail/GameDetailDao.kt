@@ -17,6 +17,6 @@ interface GameDetailDao {
     fun insertGame(game: GameDetail)
 
     @Update(entity = GameDetail::class)
-    suspend fun updateGame(games: List<GameDetail>)
+    suspend fun updateGame(games: List<GameDetail>): Int
 
 }

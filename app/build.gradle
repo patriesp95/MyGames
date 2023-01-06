@@ -13,7 +13,7 @@ android {
     compileSdk 31
     namespace 'com.patriciamespert.mygamesac'
     defaultConfig {
-        applicationId "com.devexperto.architectcoders"
+        applicationId "com.patriciamespert.mygamesac"
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -77,7 +77,14 @@ dependencies {
     implementation Libs.Hilt.android
     kapt Libs.Hilt.compiler
 
+    testImplementation project(":testShared")
     testImplementation Libs.JUnit.junit
+    testImplementation Libs.Mockito.kotlin
+    testImplementation Libs.Mockito.inline
+    testImplementation Libs.Kotlin.Coroutines.test
+    testImplementation Libs.turbine
+
+
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
     androidTestImplementation Libs.AndroidX.Test.Espresso.core
 }
