@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.server
+package com.patriciamespert.mygamesac.data.server.main
 
 import com.patriciamespert.mygamesac.data.datasource.GameResult
 import com.patriciamespert.mygamesac.data.datasource.core.RetrofitHelper

@@ -11,7 +11,7 @@ import com.patriciamespert.mygamesac.data.database.database.GameDatabase
 import com.patriciamespert.mygamesac.data.database.detail.GameDetailRoomDataSource
 import com.patriciamespert.mygamesac.data.database.main.GameRoomDataSource
 import com.patriciamespert.mygamesac.data.server.GameDetailServerDataSource
-import com.patriciamespert.mygamesac.data.server.GameServerDataSource
+import com.patriciamespert.mygamesac.data.server.main.GameServerDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
