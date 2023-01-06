@@ -3,11 +3,9 @@ package com.patriciamespert.mygamesac.ui.main
 import app.cash.turbine.test
 import com.patriciamespert.mygamesac.testrules.CoroutinesTestRule
 import com.patriciamespert.mygamesac.testshared.sampleGame
-import com.patriciamespert.mygamesac.testshared.sampleGameDetail
 import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
 import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
 import com.patriciamespert.mygamesac.ui.main.MainViewModel.UiState
-import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.*
@@ -18,9 +16,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
