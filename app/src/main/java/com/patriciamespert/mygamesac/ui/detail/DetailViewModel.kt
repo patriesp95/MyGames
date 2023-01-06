@@ -1,6 +1,7 @@
 package com.patriciamespert.mygamesac.ui.detail
 
 import androidx.lifecycle.*
+import com.patriciamespert.mygamesac.di.GameId
 import com.patriciamespert.mygamesac.domain.GameDetail
 import com.patriciamespert.mygamesac.usecases.FindGameUseCase
 import com.patriciamespert.mygamesac.usecases.RequestGameUseCase
@@ -15,14 +16,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
+    @GameId private val gameId: Int,
     requestGameUseCase: RequestGameUseCase,
     findGameUseCase: FindGameUseCase,
     private val switchGameFavoriteUseCase: SwitchGameFavoriteUseCase
 
 ) : ViewModel() {
-
-    private val gameId = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).id
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
