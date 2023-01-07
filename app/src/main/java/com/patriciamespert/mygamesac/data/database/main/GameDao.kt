@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.patriciamespert.mygamesac.data.server.database.Game
+import com.patriciamespert.mygamesac.data.database.Game
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -3,10 +3,10 @@ package com.patriciamespert.mygamesac.appTestShared
 import com.patriciamespert.mygamesac.data.server.database.detail.GameDetailDao
 import com.patriciamespert.mygamesac.data.server.database.main.GameDao
 import com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse as RemoteDetailResult
-import com.patriciamespert.mygamesac.data.server.GameResult as RemoteGame
+import com.patriciamespert.mygamesac.data.server.main.GameResult as RemoteGame
 import kotlinx.coroutines.flow.*
-import com.patriciamespert.mygamesac.data.server.database.Game as DatabaseGame
-import com.patriciamespert.mygamesac.data.server.database.GameDetail as DatabaseDetailGame
+import com.patriciamespert.mygamesac.data.database.Game as DatabaseGame
+import com.patriciamespert.mygamesac.data.database.GameDetail as DatabaseDetailGame
 import com.patriciamespert.mygamesac.data.server.main.GameResponse as RemoteResult
 import com.patriciamespert.mygamesac.data.core.ApiService as RemoteService
 

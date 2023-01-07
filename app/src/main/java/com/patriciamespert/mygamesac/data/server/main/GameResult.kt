@@ -1,4 +1,4 @@
-package com.patriciamespert.mygamesac.data.server
+package com.patriciamespert.mygamesac.data.server.main
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

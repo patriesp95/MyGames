@@ -1,7 +1,6 @@
 package com.patriciamespert.mygamesac.data.server.main
 
 import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
-import com.patriciamespert.mygamesac.data.server.GameResult
 import com.patriciamespert.mygamesac.data.core.ApiService
 import com.patriciamespert.mygamesac.di.ApiKey
 import com.patriciamespert.mygamesac.domain.Game

@@ -1,7 +1,11 @@
 package com.patriciamespert.mygamesac.ui.detail
 
 import app.cash.turbine.test
-import com.patriciamespert.mygamesac.domain.Game
+import com.patriciamespert.mygamesac.appTestShared.buildDatabaseDetailGames
+import com.patriciamespert.mygamesac.data.database.Game
+import com.patriciamespert.mygamesac.data.database.GameDetail as DatabaseDetailGame
+import com.patriciamespert.mygamesac.data.server.main.GameResult as RemoteGame
+import com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse as RemoteDetailGame
 import com.patriciamespert.mygamesac.domain.GameDetail
 import com.patriciamespert.mygamesac.testrules.CoroutinesTestRule
 import com.patriciamespert.mygamesac.testshared.sampleGameDetail
@@ -26,12 +30,12 @@ class DetailIntegrationTests {
     fun `UI is updated with the game on start`() = runTest {
         val vm = buildViewModelWith(
             id = 2,
-            localDetailData = listOf(sampleGameDetail.copy(1), sampleGameDetail.copy(2))
+            localDetailData = buildDatabaseDetailGames(1, 2, 3)
         )
 
         vm.state.test {
             Assert.assertEquals(UiState(), awaitItem())
-            Assert.assertEquals(UiState(game = sampleGameDetail.copy(2)), awaitItem())
+            Assert.assertEquals(2, awaitItem().game!!.gameId)
             cancel()
         }
     }
@@ -40,17 +44,15 @@ class DetailIntegrationTests {
     fun `Favorite is updated in local data source`() = runTest {
         val vm = buildViewModelWith(
             id = 2,
-            localDetailData = listOf(sampleGameDetail.copy(1), sampleGameDetail.copy(2))
+            localDetailData = buildDatabaseDetailGames(1, 2, 3)
         )
 
         vm.onFavoriteClicked()
 
         vm.state.test {
             Assert.assertEquals(UiState(), awaitItem())
-            Assert.assertEquals(
-                UiState(game = sampleGameDetail.copy(gameId = 2, favorite = true)),
-                awaitItem()
-            )
+            Assert.assertEquals(false, awaitItem().game!!.favorite)
+            Assert.assertEquals(true, awaitItem().game!!.favorite)
             cancel()
         }
     }
@@ -58,9 +60,9 @@ class DetailIntegrationTests {
     private fun buildViewModelWith(
         id: Int,
         localData: List<Game> = emptyList(),
-        localDetailData: List<GameDetail> = emptyList(),
-        remoteData: List<Game> = emptyList(),
-        remoteDetailData: List<GameDetail> = emptyList(),
+        localDetailData: List<DatabaseDetailGame> = emptyList(),
+        remoteData: List<RemoteGame> = emptyList(),
+        remoteDetailData: List<RemoteDetailGame> = emptyList(),
     ): DetailViewModel {
         val gamesRepository = buildRepositoryWith(localData, remoteData, localDetailData, remoteDetailData)
         val requestGameUseCase = RequestGameUseCase(gamesRepository)

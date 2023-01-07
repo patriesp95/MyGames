@@ -2,9 +2,10 @@ package com.patriciamespert.mygamesac.ui.main
 
 import app.cash.turbine.test
 import com.patriciamespert.mygamesac.appTestShared.*
-import com.patriciamespert.mygamesac.data.server.GameResult
-import com.patriciamespert.mygamesac.data.server.database.Game
-import com.patriciamespert.mygamesac.data.server.database.GameDetail
+import com.patriciamespert.mygamesac.data.server.main.GameResult
+import com.patriciamespert.mygamesac.data.database.Game
+import com.patriciamespert.mygamesac.data.database.GameDetail
+import com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse
 import com.patriciamespert.mygamesac.testrules.CoroutinesTestRule
 import com.patriciamespert.mygamesac.ui.main.MainViewModel.UiState
 import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
@@ -25,9 +26,12 @@ class MainIntegrationTests {
     @Test
     fun `data is loaded from server when local source is empty`() = runTest {
         val remoteData = buildRemoteGames(4, 5, 6)
+        val remoteDetailData = buildRemoteDetailGames(4, 5, 6)
         val vm = buildViewModelWith(
             localData = emptyList(),
-            remoteData = remoteData
+            remoteData = remoteData,
+            localDetailData = emptyList(),
+            remoteDetailData = remoteDetailData
         )
 
         vm.onUiReady()
@@ -51,9 +55,13 @@ class MainIntegrationTests {
     fun `data is loaded from local source when available`() = runTest {
         val localData = buildDatabaseGames(1, 2, 3)
         val remoteData = buildRemoteGames(4, 5, 6)
+        val localDetailData = buildDatabaseDetailGames(1,2,3)
+        val remoteDetailData = buildRemoteDetailGames(4, 5, 6)
         val vm = buildViewModelWith(
             localData = localData,
-            remoteData = remoteData
+            remoteData = remoteData,
+            localDetailData = localDetailData,
+            remoteDetailData = remoteDetailData
         )
 
         vm.state.test {
@@ -72,7 +80,7 @@ class MainIntegrationTests {
         localData: List<Game>,
         remoteData: List<GameResult>,
         localDetailData: List<GameDetail>,
-        remoteDetailData: List<GameResult>
+        remoteDetailData: List<GameDetailResponse>
     ): MainViewModel {
         val gamesRepository = buildRepositoryWith(localData, remoteData,localDetailData,remoteDetailData)
         val getPopularMoviesUseCase = GetPopularGamesUseCase(gamesRepository)

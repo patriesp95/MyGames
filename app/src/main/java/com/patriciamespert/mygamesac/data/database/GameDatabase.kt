@@ -2,9 +2,9 @@ package com.patriciamespert.mygamesac.data.database.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.patriciamespert.mygamesac.data.server.database.GameDetail
+import com.patriciamespert.mygamesac.data.database.GameDetail
 import com.patriciamespert.mygamesac.data.server.database.detail.GameDetailDao
-import com.patriciamespert.mygamesac.data.server.database.Game
+import com.patriciamespert.mygamesac.data.database.Game
 import com.patriciamespert.mygamesac.data.server.database.main.GameDao
 
 @Database(entities = [Game::class, GameDetail::class], version = 1, exportSchema = false)
