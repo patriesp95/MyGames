@@ -56,7 +56,7 @@ fun buildRemoteGames(vararg id: Int) = id.map {
     RemoteGame(
         id = it,
         slug  = "slug $it",
-        name = "name $it",
+        name = "Title $it",
         released = "24/07/76",
         tba = false,
         background_image = "",

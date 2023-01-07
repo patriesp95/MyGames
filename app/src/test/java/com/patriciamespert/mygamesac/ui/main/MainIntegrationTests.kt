@@ -42,10 +42,10 @@ class MainIntegrationTests {
             assertEquals(UiState(games = emptyList(), loading = true), awaitItem())
             assertEquals(UiState(games = emptyList(), loading = false), awaitItem())
 
-            val movies = awaitItem().games!!
-            Assert.assertEquals("Title 4", movies[0].name)
-            Assert.assertEquals("Title 5", movies[1].name)
-            Assert.assertEquals("Title 6", movies[2].name)
+            val games = awaitItem().games!!
+            Assert.assertEquals("Title 4", games[0].name)
+            Assert.assertEquals("Title 5", games[1].name)
+            Assert.assertEquals("Title 6", games[2].name)
 
             cancel()
         }
@@ -67,10 +67,10 @@ class MainIntegrationTests {
         vm.state.test {
             assertEquals(UiState(), awaitItem())
 
-            val movies = awaitItem().games!!
-            Assert.assertEquals("Title 1", movies[0].name)
-            Assert.assertEquals("Title 2", movies[1].name)
-            Assert.assertEquals("Title 3", movies[2].name)
+            val games = awaitItem().games!!
+            Assert.assertEquals("Title 1", games[0].name)
+            Assert.assertEquals("Title 2", games[1].name)
+            Assert.assertEquals("Title 3", games[2].name)
 
             cancel()
         }
