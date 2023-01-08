@@ -11,6 +11,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -33,9 +38,32 @@ object TestAppModule {
     @Singleton
     fun provideGameDetailDao(): GameDetailDao = FakeGameDetailDao()
 
+
     @Provides
     @Singleton
+    @ApiUrl
+    fun provideApiUrl(): String = "https://api.rawg.io/api/"
+
+   /* @Provides
+    @Singleton
     fun provideRemoteService(): ApiService =
-        FakeRemoteService(buildRemoteGames(1, 2, 3, 4, 5, 6))
+        FakeRemoteService(buildRemoteGames(1, 2, 3, 4, 5, 6))*/
+
+
+    @Provides
+    @Singleton
+    fun provideRemoteService(@ApiUrl apiUrl: String): ApiService {
+        val okHttpClient = HttpLoggingInterceptor().run {
+            level = HttpLoggingInterceptor.Level.BODY
+            OkHttpClient.Builder().addInterceptor(this).build()
+        }
+
+        return Retrofit.Builder()
+            .baseUrl(apiUrl)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create()
+    }
 
 }

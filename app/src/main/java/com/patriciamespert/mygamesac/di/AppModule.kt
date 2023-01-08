@@ -55,14 +55,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRemoteService(): ApiService {
+    @ApiUrl
+    fun provideApiUrl(): String = "https://api.rawg.io/api/"
+
+
+    @Provides
+    @Singleton
+    fun provideRemoteService(@ApiUrl apiUrl: String): ApiService {
         val okHttpClient = HttpLoggingInterceptor().run {
             level = HttpLoggingInterceptor.Level.BODY
             OkHttpClient.Builder().addInterceptor(this).build()
         }
 
         return Retrofit.Builder()
-            .baseUrl("https://api.rawg.io/api/")
+            .baseUrl(apiUrl)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
