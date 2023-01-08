@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.patriciamespert.mygamesac.data.database.GameDetail
 import com.patriciamespert.mygamesac.data.server.database.detail.GameDetailDao
 import com.patriciamespert.mygamesac.data.database.Game
-import com.patriciamespert.mygamesac.data.server.database.main.GameDao
+import com.patriciamespert.mygamesac.data.database.main.GameDao
 
 @Database(entities = [Game::class, GameDetail::class], version = 1, exportSchema = false)
 abstract class GameDatabase: RoomDatabase(){

@@ -1,5 +1,6 @@
 package com.patriciamespert.mygamesac.data.server.database.main
 
+import com.patriciamespert.mygamesac.data.database.main.GameDao
 import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.domain.Game
 import com.patriciamespert.mygamesac.data.database.Game as GameDb
