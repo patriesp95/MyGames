@@ -70,7 +70,7 @@ class MainInstrumentationTest {
     fun check_mock_server_is_working() = runTest {
         val games = remoteDataSource.findPopularGames()
         games?.let{
-            Assert.assertEquals("Grand Theft Auto V", it[0].name)
+            Assert.assertEquals("Portal", it[0].name)
         }
     }
 }

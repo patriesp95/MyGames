@@ -28,7 +28,7 @@ object TestAppModule {
     @Provides
     @Singleton
     @ApiKey
-    fun provideApiKey(): String = "1234"
+    fun provideApiKey(): String = "60c65bc880424d0aa952d4684512bb1b"
 
     @Provides
     @Singleton
