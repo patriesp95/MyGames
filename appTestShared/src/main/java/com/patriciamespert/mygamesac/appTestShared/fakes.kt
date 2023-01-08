@@ -52,14 +52,21 @@ class FakeGameDao(games: List<DatabaseGame> = emptyList()) : GameDao {
 
 class FakeRemoteService(private val games: List<RemoteGame> = emptyList()) : RemoteService {
 
-    override suspend fun listPopularGames(apiKey: String, ordering: String, platforms_count:Int): RemoteResult = RemoteResult(
+    /*override suspend fun listPopularGames(apiKey: String, ordering: String, platforms_count:Int): RemoteResult = RemoteResult(
         games.size,
         "2",
-        null,
+        "",
         games
     )
 
-    override suspend fun getGameDetails(id: String, key: String): RemoteDetailResult = RemoteDetailResult (
+    override suspend fun getGameDetails(
+        id: String,
+        key: String
+    ): com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse {
+        TODO("Not yet implemented")
+    }
+*/
+    /*override suspend fun getGameDetails(id: String, key: String): RemoteDetailResult = RemoteDetailResult (
         0,
         "",
         "",
@@ -104,8 +111,20 @@ class FakeRemoteService(private val games: List<RemoteGame> = emptyList()) : Rem
         null,
         "",
         ""
+    )*/
+    override suspend fun listPopularGames(key: String): RemoteResult = RemoteResult(
+    games.size,
+    "2",
+    "",
+    games
     )
 
+    override suspend fun getGameDetails(
+        id: String,
+        key: String
+    ): com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse {
+        TODO("Not yet implemented")
+    }
 
 
 }

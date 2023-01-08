@@ -9,11 +9,12 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("games")
+    //@GET("games")
+    @GET("games?ordering=-rating&platforms_count=7")
     suspend fun listPopularGames(
         @Query("key") key: String,
-        @Query("ordering") ordering: String = "-rating",
-        @Query("platforms_count") platforms_count: Int = 7,
+//        @Query("ordering") ordering: String = "-rating",
+//        @Query("platforms_count") platforms_count: Int = 7,
         //@Query("page") page: Int = 2
     ): GameResponse
 

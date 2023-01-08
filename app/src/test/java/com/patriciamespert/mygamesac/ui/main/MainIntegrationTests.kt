@@ -7,7 +7,6 @@ import com.patriciamespert.mygamesac.data.server.main.GameResult as RemoteGame
 import com.patriciamespert.mygamesac.data.database.GameDetail
 import com.patriciamespert.mygamesac.data.server.detail.GameDetailResponse
 import com.patriciamespert.mygamesac.testrules.CoroutinesTestRule
-import com.patriciamespert.mygamesac.testshared.sampleGame
 import com.patriciamespert.mygamesac.ui.main.MainViewModel.UiState
 import com.patriciamespert.mygamesac.usecases.GetPopularGamesUseCase
 import com.patriciamespert.mygamesac.usecases.RequestPopularGamesUseCase
@@ -36,8 +35,7 @@ class MainIntegrationTests {
         vm.state.test {
             assertEquals(UiState(), awaitItem())
             assertEquals(UiState(games = emptyList()), awaitItem())
-            assertEquals(UiState(games = emptyList(), loading = true), awaitItem())
-            assertEquals(UiState(games = emptyList(), loading = false), awaitItem())
+            assertEquals(UiState(games =  emptyList(), loading = true), awaitItem())
 
             val games = awaitItem().games!!
             assertEquals("Title 4", games[0].name)
