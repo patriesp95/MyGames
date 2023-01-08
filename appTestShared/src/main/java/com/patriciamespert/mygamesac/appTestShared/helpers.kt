@@ -38,6 +38,19 @@ fun buildDatabaseGames(vararg id: Int) = id.map {
     )
 }
 
+fun buildRemoteGames(vararg id: Int) = id.map {
+    RemoteGame(
+        id = it,
+        name = "Title $it",
+        released = "01/01/2025",
+        backgroundImage = "",
+        rating = 5.0,
+        ratingTop = 5,
+        added = 0,
+        favorite = false
+    )
+}
+
 fun buildDatabaseDetailGames(vararg id: Int) = id.map {
     DatabaseGameDetail(
         gameId = it,
@@ -48,30 +61,6 @@ fun buildDatabaseDetailGames(vararg id: Int) = id.map {
         gameRating = 5.0,
         gameRatingTop = 5,
         favorite = false
-    )
-}
-
-
-fun buildRemoteGames(vararg id: Int) = id.map {
-    RemoteGame(
-        id = it,
-        slug  = "slug $it",
-        name = "Title $it",
-        released = "24/07/76",
-        tba = false,
-        background_image = "",
-        rating = 5.0,
-        rating_top = 5,
-        ratings = emptyList(),
-        ratings_count = 2,
-        reviews_text_count = 2,
-        added = 1,
-        added_by_status = null,
-        metacritic = 3,
-        playtime = 5,
-        suggestions_count = 5,
-        esrb_rating = null,
-        platforms = emptyList()
     )
 }
 

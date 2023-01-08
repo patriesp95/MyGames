@@ -52,7 +52,7 @@ class FakeGameDao(games: List<DatabaseGame> = emptyList()) : GameDao {
 
 class FakeRemoteService(private val games: List<RemoteGame> = emptyList()) : RemoteService {
 
-    override suspend fun listPopularGames(apiKey: String,ordering: String,platforms_count:Int): RemoteResult = RemoteResult(
+    override suspend fun listPopularGames(apiKey: String, ordering: String, platforms_count:Int): RemoteResult = RemoteResult(
         games.size,
         "2",
         null,

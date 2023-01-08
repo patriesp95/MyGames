@@ -29,9 +29,9 @@ private fun GameResult.toDomainModel(): Game =
         id,
         name,
         released,
-        background_image,
+        backgroundImage,
         rating,
-        rating_top,
-        added,
+        ratingTop,
+        0,
         false
     )
