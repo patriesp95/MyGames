@@ -24,5 +24,5 @@ interface GameDao {
     fun updateGame(game: Game): Int
 
     @Query("UPDATE game SET favorite =:favorite WHERE id = :id")
-    suspend fun updateFavorite(id: Int, favorite: Boolean): Int
+    suspend fun updateFavorite(id: Int, favorite: Boolean): Void
 }

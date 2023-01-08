@@ -1,6 +1,6 @@
 package com.patriciamespert.mygamesac.appTestShared
 
-import com.patriciamespert.mygamesac.data.server.database.detail.GameDetailDao
+import com.patriciamespert.mygamesac.data.database.detail.GameDetailDao
 import com.patriciamespert.mygamesac.data.database.main.GameDao
 import com.patriciamespert.mygamesac.data.server.main.GameResult as RemoteGame
 import kotlinx.coroutines.flow.*
@@ -42,7 +42,7 @@ class FakeGameDao(games: List<DatabaseGame> = emptyList()) : GameDao {
         return 0
     }
 
-    override suspend fun updateFavorite(id: Int, favorite: Boolean): Int {
+    override suspend fun updateFavorite(id: Int, favorite: Boolean): Void {
         TODO("Not yet implemented")
     }
 

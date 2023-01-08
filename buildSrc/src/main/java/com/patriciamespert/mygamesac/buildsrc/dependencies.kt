@@ -47,7 +47,7 @@ object Libs {
         }
 
         object Room {
-            private const val version = "2.4.2"
+            private const val version = "2.4.3"
             const val runtime = "androidx.room:room-runtime:$version"
             const val ktx = "androidx.room:room-ktx:$version"
             const val compiler = "androidx.room:room-compiler:$version"
@@ -94,7 +94,7 @@ object Libs {
     }
 
     object Hilt {
-        private const val version = "2.42"
+        private const val version = "2.38.1"
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
