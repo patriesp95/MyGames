@@ -12,6 +12,7 @@ import com.patriciamespert.mygamesac.ui.NavHostActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert
@@ -71,6 +72,7 @@ class MainInstrumentationTest {
         val games = remoteDataSource.findPopularGames()
         games?.let{
             Assert.assertEquals("Portal", it[0].name)
+            cancel()
         }
     }
 }
