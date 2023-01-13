@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.patriciamespert.mygamesac">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:networkSecurityConfig="@xml/network_security_config"
         tools:ignore="MissingApplicationIcon,UnusedAttribute"
+        android:usesCleartextTraffic="true"
         tools:node="merge" />
-
 </manifest>

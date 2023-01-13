@@ -1,12 +1,9 @@
 package com.patriciamespert.mygamesac.di
 
-import com.patriciamespert.mygamesac.appTestShared.FakeGameDao
-import com.patriciamespert.mygamesac.appTestShared.FakeGameDetailDao
-import com.patriciamespert.mygamesac.appTestShared.FakeRemoteService
-import com.patriciamespert.mygamesac.appTestShared.buildRemoteGames
+import android.app.Application
 import com.patriciamespert.mygamesac.data.core.ApiService
-import com.patriciamespert.mygamesac.data.database.detail.GameDetailDao
-import com.patriciamespert.mygamesac.data.database.main.GameDao
+import com.patriciamespert.mygamesac.R
+import com.patriciamespert.mygamesac.data.database.GameDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.components.SingletonComponent
@@ -28,36 +25,33 @@ object TestAppModule {
     @Provides
     @Singleton
     @ApiKey
-    fun provideApiKey(): String = "60c65bc880424d0aa952d4684512bb1b"
+    fun provideApiKey(app: Application): String = app.getString(R.string.api_key)
 
     @Provides
     @Singleton
-    fun provideGameDao(): GameDao = FakeGameDao()
+    fun provideGameDao(db: GameDatabase) = db.gameDao()
 
     @Provides
     @Singleton
-    fun provideGameDetailDao(): GameDetailDao = FakeGameDetailDao()
+    fun provideGameDetailDao(db: GameDatabase) = db.gameDetailDao()
 
 
     @Provides
     @Singleton
     @ApiUrl
-    fun provideApiUrl(): String = "https://api.rawg.io/api/"
+    fun provideApiUrl(): String = "http://localhost:8080"
 
-   /* @Provides
+    @Provides
     @Singleton
-    fun provideRemoteService(): ApiService =
-        FakeRemoteService(buildRemoteGames(1, 2, 3, 4, 5, 6))*/
+    fun provideOkHttpClient(): OkHttpClient = HttpLoggingInterceptor().run {
+        level = HttpLoggingInterceptor.Level.BODY
+        OkHttpClient.Builder().addInterceptor(this).build()
+    }
 
 
     @Provides
     @Singleton
-    fun provideRemoteService(@ApiUrl apiUrl: String): ApiService {
-        val okHttpClient = HttpLoggingInterceptor().run {
-            level = HttpLoggingInterceptor.Level.BODY
-            OkHttpClient.Builder().addInterceptor(this).build()
-        }
-
+    fun provideRemoteService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): ApiService {
         return Retrofit.Builder()
             .baseUrl(apiUrl)
             .client(okHttpClient)

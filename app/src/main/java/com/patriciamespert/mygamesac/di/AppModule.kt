@@ -8,7 +8,7 @@ import com.patriciamespert.mygamesac.data.datasource.main.GameLocalDataSource
 import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
 import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.data.core.ApiService
-import com.patriciamespert.mygamesac.data.database.database.GameDatabase
+import com.patriciamespert.mygamesac.data.database.GameDatabase
 import com.patriciamespert.mygamesac.data.database.detail.GameDetailRoomDataSource
 import com.patriciamespert.mygamesac.data.server.database.main.GameRoomDataSource
 import com.patriciamespert.mygamesac.data.server.detail.GameDetailServerDataSource
@@ -58,14 +58,16 @@ object AppModule {
     @ApiUrl
     fun provideApiUrl(): String = "https://api.rawg.io/api/"
 
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient = HttpLoggingInterceptor().run {
+        level = HttpLoggingInterceptor.Level.BODY
+        OkHttpClient.Builder().addInterceptor(this).build()
+    }
 
     @Provides
     @Singleton
-    fun provideRemoteService(@ApiUrl apiUrl: String): ApiService {
-        val okHttpClient = HttpLoggingInterceptor().run {
-            level = HttpLoggingInterceptor.Level.BODY
-            OkHttpClient.Builder().addInterceptor(this).build()
-        }
+    fun provideRemoteService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): ApiService {
 
         return Retrofit.Builder()
             .baseUrl(apiUrl)

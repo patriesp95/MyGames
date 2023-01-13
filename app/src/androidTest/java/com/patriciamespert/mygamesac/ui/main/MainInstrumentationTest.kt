@@ -1,8 +1,18 @@
 package com.patriciamespert.mygamesac.ui.main
 
+import androidx.recyclerview.widget.RecyclerView
+import androidx.sqlite.db.SupportSQLiteCompat.Api16Impl.cancel
+import androidx.test.espresso.Espresso
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.doubleClick
+import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.rule.GrantPermissionRule
-import arrow.core.fold
+import com.patriciamespert.mygamesac.R
 import com.patriciamespert.mygamesac.appTestShared.buildDatabaseGames
 import com.patriciamespert.mygamesac.data.database.main.GameDao
 import com.patriciamespert.mygamesac.data.datasource.main.GameRemoteDataSource
@@ -14,6 +24,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.runTest
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Assert
 import org.junit.Before
@@ -36,6 +47,9 @@ class MainInstrumentationTest {
     val activityRule = ActivityScenarioRule(NavHostActivity::class.java)
 
     @Inject
+    lateinit var okHttpClient: OkHttpClient
+
+    @Inject
     lateinit var gameDao: GameDao
 
     @Inject
@@ -48,31 +62,22 @@ class MainInstrumentationTest {
         )
 
         hiltRule.inject()
+
+        val resource = OkHttp3IdlingResource.create("OkHttp", okHttpClient)
+        IdlingRegistry.getInstance().register(resource)
     }
 
     @Test
-    fun test_it_works() {
+    fun click_a_game_navigates_to_detail() {
+        Espresso.onView(withId(R.id.recycler))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                    1,
+                click()
+                )
+            )
 
-    }
+        Espresso.onView(withId(R.id.game_detail_toolbar))
+                .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("Grand Theft Auto V"))))
 
-    @Test
-    fun check_4_items_db() = runTest {
-        gameDao.insertGames(buildDatabaseGames(1, 2, 3, 4))
-        Assert.assertEquals(4, gameDao.gameCount())
-    }
-
-    @Test
-    fun check_6_items_db() = runTest {
-        gameDao.insertGames(buildDatabaseGames(1, 2, 3, 4, 5, 6))
-        Assert.assertEquals(6, gameDao.gameCount())
-    }
-
-    @Test
-    fun check_mock_server_is_working() = runTest {
-        val games = remoteDataSource.findPopularGames()
-        games?.let{
-            Assert.assertEquals("Portal", it[0].name)
-            cancel()
-        }
     }
 }
