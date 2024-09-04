@@ -49,4 +49,9 @@ Install my project simply cloning it
 
 ## Usage/Examples
 
+- First you will find a GridLayout with images from some videogames using free API https://api.rawg.io/api/
+- Once you click in some videogame you will be redirected to a detail screen with information about it an a heart you can click
+    - If you click the heart it will become black meaning you like the videogame
+ - If you navigate back to the main screen you can see your videogame in the main screen with a red heart meaning it is one of the favorites from your collection
+
 
