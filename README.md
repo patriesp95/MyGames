@@ -42,13 +42,9 @@ Install my project simply cloning it
 
 ## Screenshots
 
-![Screenshot_20240904_222008](https://github.com/user-attachments/assets/89bf4133-8831-4596-9d80-c51f53ece915)
+![Screenshot_20240904_224918](https://github.com/user-attachments/assets/b7cb2b18-2d8a-4c81-8e6f-4ab8a199f98f)
 
-![Screenshot_20240904_222558](https://github.com/user-attachments/assets/2ac19946-0de3-45a6-a46e-c0f1b72652f1)
-
-![Screenshot_20240904_222614](https://github.com/user-attachments/assets/350bbcef-8bfe-44b8-aaad-5cc1168ee1d1)
-
-![Screenshot_20240904_222631](https://github.com/user-attachments/assets/0b059d34-eefa-4e8f-9a16-c51af73f01b3)
+![Screenshot_20240904_224905](https://github.com/user-attachments/assets/d6d18fd9-0c85-44f5-98a7-ba6ab448ded6)
 
 
 ## Usage/Examples
