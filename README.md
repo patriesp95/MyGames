@@ -8,6 +8,9 @@ In this project you will find
 - Clean Architecture
 - Dependency Injection using Dagger Hilt
 - Retrofit
+- Mappers
+- Fragments
+- Navigation Component
 - Corroutines
 - Data persistence using Google's ORM Room
 - Modularization
