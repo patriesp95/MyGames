@@ -11,7 +11,7 @@ In this project you will find
 - Mappers
 - Fragments
 - Navigation Component
-- Safeargs
+- Safe Args
 - Corroutines
 - Data persistence using Google's ORM Room
 - Modularization
