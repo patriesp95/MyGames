@@ -12,19 +12,19 @@ In this project you will find
 - Fragments
 - Navigation Component
 - Safe Args
-- Corroutines
+- Coroutines
 - Data persistence using Google's ORM Room
 - Modularization
 - Testing
     - Unitary tests
     - Integration tests
-    - UI tests using expresso
+    - UI tests using espresso
 
 
 
 
 ## 🚀 About Me
-I'm a young mobile developer mainly intered in Android although I am currently working as an iOS developer in worldwide travelling company eDreams Odigeo 🛩️
+I'm a young mobile developer mainly interested in Android although I am currently working as an iOS developer in worldwide travelling company eDreams Odigeo 🛩️
 
 
 ## 🔗 Links
